@@ -1,0 +1,547 @@
+{
+  "name": "Cloudflare Incident Monitoring & Alerting Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -544,
+        304
+      ],
+      "id": "f2ef08a0-830b-4a7a-b5b9-e1c6e07e764f",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        868
+      ],
+      "id": "f7a5d6c8-a815-4731-9237-49d0dc74bcc4",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "tnXtbK3d66hDjxXa",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0036f077-51c2-4044-992a-a869c50e3e1a",
+              "leftValue": "={{ $json.incidents }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -96,
+        304
+      ],
+      "id": "23b4324b-81d2-4eda-b01c-af0f78affc1c",
+      "name": "CloudFlare OK?"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Here is the latest Cloudflare Status API response. Please summarize the active incidents for Telegram using the system instructions. \nContext: \nToday: {{ $today }}\nNow: {{ $now }}\nJSON:\n {{ $('Call CloudFlare Status API').item.json.incidents.toJsonString() }}",
+        "options": {
+          "systemMessage": "You are an AI assistant that turns Cloudflare Status API incident payloads into short Telegram notifications.\n\nGOAL\n\t•\tRead the JSON payload from the Cloudflare Status API.\n\t•\tSummarize EACH incident that is not fully resolved.\n\t•\tProduce concise, human-friendly messages ready to send to a Telegram channel.\n\t•\tAll timestamps must be converted to Singapore time (Asia/Singapore, UTC+8).\n\nINPUT FORMAT\n\t•\tYou will receive a JSON object that contains an incidents array.\n\t•\tEach incident has fields such as:\n\t•\tid\n\t•\tname\n\t•\timpact (e.g., “critical”, “major”, “minor”, “maintenance”)\n\t•\tstatus (e.g., “identified”, “investigating”, “monitoring”, “resolved”)\n\t•\tcreated_at, updated_at, resolved_at\n\t•\tshortlink\n\t•\tincident_updates[] with fields: body, status, created_at, updated_at, display_at\n\nTIMEZONE RULE\n\t•\tConvert every time you show (created_at, updated_at, resolved_at, etc.) to Singapore time: UTC+8, timezone name: SGT.\n\t•\tUse this format: YYYY-MM-DD HH:mm:ss SGT\n\nWHAT TO SUMMARIZE\nFor each incident that is NOT fully resolved (resolved_at is null OR status != “resolved”):\n\t•\tIncident name.\n\t•\tImpact level (with emoji).\n\t•\tCurrent status.\n\t•\tA short summary based on the LATEST incident_update.body (or latest update by created_at).\n\t•\tCreated time and last updated time (SGT).\n\t•\tShortlink (if available).\n\nTELEGRAM-SAFETY RULES (IMPORTANT)\n\t•\tOutput MUST be plain text only. Do NOT use Markdown, MarkdownV2, or HTML formatting.\n\t•\tDo NOT include characters that can break Telegram parsing when parse_mode is enabled:\n\t•\tAvoid: * _ [ ] ( ) ~ \\ > # + = | { }`\n\t•\tIf these characters appear in the incident text (name/body), replace them with safe alternatives:\n\t•\tReplace [ and ] with nothing, or with ( and ) (but do not use parentheses if your sender uses MarkdownV2).\n\t•\tReplace _ with - (example: degraded_performance → degraded-performance)\n\t•\tReplace backticks with apostrophes.\n\t•\tKeep URLs as plain URLs. Put the link on its own line starting with Details:.\n\nSTYLE / OUTPUT RULES\n\t•\tFor each incident, output 1–2 short sentences, then 4–6 bullet lines.\n\t•\tUse only hyphen bullets -  (dash + space). Avoid other bullet symbols.\n\t•\tImpact emoji mapping:\n\t•\tcritical → 🔴\n\t•\tmajor → 🟠\n\t•\tminor → 🟡\n\t•\tmaintenance or none → 🔵\n\t•\tSeparate multiple incidents with a blank line.\n\t•\tIf there are no active incidents (all resolved or incidents is empty), output exactly:\nNo active Cloudflare incidents at the moment.\n\nOUTPUT FORMAT (STRICT)\nFor each active incident, follow exactly this layout:\n\n{Incident Name} — {One-sentence latest update summary}\n\t•\t{emoji} Impact: {impact}\n\t•\tStatus: {status}\n\t•\tCreated: {created_at_sgt}\n\t•\tUpdated: {updated_at_sgt}\n\t•\tComponent: {component_name_if_available} {component_status_if_available}\n\t•\tDetails: {shortlink_or_omit_line_if_missing}\n\nDO NOT\n\t•\tDo not include any explanation of what you are doing.\n\t•\tDo not show the original JSON.\n\t•\tDo not mention timezone conversion logic; only show already-converted times."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        644
+      ],
+      "id": "b3920f48-824b-4e4e-b4d1-b3645ddc8d76",
+      "name": "CloudFlare Alert Bot"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2ec22ee4-5435-4eec-a56c-38132797c88a",
+              "leftValue": "={{ $now.minute }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        -80
+      ],
+      "id": "007bc034-b118-4c70-991c-a4e64c6e454d",
+      "name": "Is top of hour?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        480,
+        112
+      ],
+      "id": "f4419dec-4363-4940-89fd-6ea90cefaea1",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "#cloudflare-alert",
+          "mode": "name"
+        },
+        "text": "✅ Cloudflare Status: All systems are operational. No active incidents at the moment.",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        480,
+        -272
+      ],
+      "id": "2ee739d0-17e5-4f5a-817d-d5a89db0145b",
+      "name": "Send message via Slack",
+      "webhookId": "0811a346-813a-4c2e-8b86-80b04491256c",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "50sk9yul5PctbgzM",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1003460669186",
+        "text": "=✅ Cloudflare Status: All systems are operational. No active incidents at the moment.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        -80
+      ],
+      "id": "c5fe7e23-8432-4997-b36d-ce16329141b3",
+      "name": "Send message via Telegram",
+      "webhookId": "159b57aa-c88f-4de2-922b-3dc580b14dbf",
+      "credentials": {
+        "telegramApi": {
+          "id": "vjVPSINvPsxKxEQs",
+          "name": "AltusCloudCFBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1003460669186",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        548
+      ],
+      "id": "d66c1622-bc37-4d90-8bc0-e74398d72ff9",
+      "name": "Alert team via Telegram",
+      "webhookId": "17e77047-2d31-493b-86a2-dbc5c6b98d22",
+      "credentials": {
+        "telegramApi": {
+          "id": "vjVPSINvPsxKxEQs",
+          "name": "AltusCloudCFBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "#cloudflare-alert",
+          "mode": "name"
+        },
+        "text": "{{ $json.output }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        480,
+        740
+      ],
+      "id": "062a79e5-dec1-4bd7-a70d-4be4f13eb7b4",
+      "name": "Send message via Slack1",
+      "webhookId": "0811a346-813a-4c2e-8b86-80b04491256c",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "50sk9yul5PctbgzM",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MkYnxLqre-eRocUJ3Etxx2MxdtCU0rdopF2mb6sAF1g",
+          "mode": "list",
+          "cachedResultName": "Cloudflare Incidents",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MkYnxLqre-eRocUJ3Etxx2MxdtCU0rdopF2mb6sAF1g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MkYnxLqre-eRocUJ3Etxx2MxdtCU0rdopF2mb6sAF1g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        480,
+        304
+      ],
+      "id": "efee58f0-7d74-4eb5-800d-768ca991fea6",
+      "name": "Log Incidents",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7zk8xcj4pNU6f1WM",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.incidents;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        192,
+        304
+      ],
+      "id": "ed6dbcea-9f73-45c4-b124-f86eb5058e2b",
+      "name": "Build Incident Objects"
+    },
+    {
+      "parameters": {
+        "content": "# Cloudflare Incident Monitoring & Alerting Workflow\n> This n8n workflow periodically checks the Cloudflare Status API, detects active incidents, logs them to Google Sheets, and sends concise alerts to Slack and Telegram using an AI-powered summarizer.\n## Who's it for\nThis workflow is designed for **DevOps, SRE, Platform, and Cloud teams** who:\n- Rely on **Cloudflare** for DNS, CDN, WAF, R2, or other services\n- Need **early visibility** into Cloudflare incidents\n- Want **automated alerts** without manually checking status pages\n- Need a **lightweight incident log** for audit, reporting, or postmortems\n- Use **Slack and/or Telegram** as primary operational communication channels\nTypical users include:\n- Startup infrastructure teams\n- SaaS operations teams\n- Managed service providers (MSPs)\n- Cloud & network monitoring teams\n## How it works\n1. **Schedule Trigger**\n   - Runs the workflow on a fixed schedule (e.g. every 5 or 10 minutes).\n2. **Call Cloudflare Status API**\n   - Calls the Cloudflare Status API to retrieve the current page status and unresolved incidents.\n3. **Cloudflare OK? (IF node)**\n   - Checks whether there are **any active incidents**.\n   - If no incidents exist → workflow can stop or send a periodic \"all clear\" message.\n   - If incidents exist → continue processing.\n4. **Build Incident Objects (Code node)**\n   - Transforms the Cloudflare API response into a **flat incident structure**.\n   - Produces one item per incident\n   - This output is reusable for logging and notifications.\n5. **Log Incidents (Google Sheets)**\n   - Appends incidents to a Google Sheet for:\n     - Historical tracking\n     - Incident analysis\n     - Compliance or reporting purposes\n6. **Is Top of Hour? (IF node)**\n   - Prevents notification spam.\n   - Only sends summary notifications at the top of the hour if configured.\n7. **Cloudflare Alert Bot (AI Agent)**\n   - Uses an AI model to:\n     - Summarize incidents into human-friendly messages\n     - Normalize wording for Slack and Telegram\n     - Reduce noise and improve readability\n8. **Send Notifications**\n   - Sends alerts to:\n     - **Telegram** (real-time alerts)\n     - **Slack** (team visibility)\n   - Channels can be enabled independently.\n## How to set up\n1. **Import the workflow**\n   - Import the n8n workflow JSON into your n8n instance.\n2. **Configure Schedule Trigger**\n   - Set your desired interval (recommended: 5–10 minutes).\n3. **Configure Cloudflare Status Decodo node**\n   - Endpoint:\n     ```\n     https://www.cloudflarestatus.com/api/v2/incidents/unresolved.json\n     ```\n   - No authentication required.\n4. **Set up Google Sheets**\n   - Create a Google Sheet with columns matching the incident fields.\n   - Authenticate Google Sheets in n8n.\n   - Configure the node to append rows.\n\n5. **Configure Messaging**\n   - **Slack**\n   - **Telegram**\n6. **Configure the AI Chat Model (optional but recommended)**\n   - Connect an OpenAI-compatible chat model.\n   - This improves message clarity and consistency.\n7. **Activate the workflow**\n   - Enable the workflow and monitor the first execution.\n## Requirements\n### Platform\n- n8n (self-hosted or cloud)\n- Code node with **Python (Native)** or JavaScript support\n### External Services\n- Cloudflare Status API (public)\n- Google Sheets (for logging)\n- Slack workspace (optional)\n- Telegram bot & chat (optional)\n- OpenAI-compatible API (optional, for AI summaries)\n### Recommended Permissions\n- Google Sheets: Edit access\n- Slack: Post messages\n- Telegram: Send messages\n- Decodo Advanced Scraping API\nThis workflow can optionally integrate with a **Decodo** node for advanced scraping or high-volume HTTP requests where standard HTTP nodes are not sufficient.\n\n### Discount Coupon 🎟️\nUse the coupon code **`TRUNG`** when subscribing to the **23k requests Advanced Scraping API plan**.\n\n- Original plan: 23,000 requests\n- Discounted price: **$5**\n- Coupon code: **TRUNG**\n\n👉 Apply this coupon during checkout to reduce your cost.\n",
+        "height": 2320,
+        "width": 928
+      },
+      "id": "45156bc7-1922-42bf-81e9-9dfc3d7d4ab0",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1536,
+        -752
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "**Schedule Trigger**\n   - Runs the workflow on a fixed schedule (e.g. every 5 or 10 minutes)",
+        "height": 112
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -576,
+        112
+      ],
+      "typeVersion": 1,
+      "id": "65f9a1ff-e87d-4406-a807-aa23cbceba10",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "**Call Cloudflare Status API**\n   - Calls the Cloudflare Status API to retrieve the current page status and unresolved incidents.\n**Cloudflare OK? (IF node)**\n   - Checks whether there are **any active incidents**.\n   - If no incidents exist → workflow can stop or send a periodic \"all clear\" message.\n   - If incidents exist → continue processing.",
+        "height": 272,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -304,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "2ba93cb5-a9c6-41bb-b3b4-b99dea7567d2",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.cloudflarestatus.com/api/v2/incidents/unresolved.json",
+        "geo": "="
+      },
+      "type": "@decodo/n8n-nodes-decodo.decodo",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        304
+      ],
+      "id": "2581a827-9eca-4342-a883-cda3efb2fe3a",
+      "name": "Decodo",
+      "credentials": {
+        "decodoApi": {
+          "id": "qDAMRMg8LKeuZwkd",
+          "name": "Decodo Credentials account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "**Build Incident Objects (Code node)**\n\n   - Transforms the Cloudflare API response into a **flat incident structure**.\n   - Produces one item per incident\n   - This output is reusable for logging and notifications.\n\n**Log Incidents (Google Sheets)**\n\n   - Appends incidents to a Google Sheet for:\n     - Historical tracking\n     - Incident analysis\n     - Compliance or reporting purposes",
+        "height": 304,
+        "width": 496
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        704,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "7564e4e5-0a5d-4e48-88d6-0536b1aa2603",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "**Cloudflare Alert Bot (AI Agent)**\n   - Uses an AI model to:\n     - Summarize incidents into human-friendly messages\n     - Normalize wording for Slack and Telegram\n     - Reduce noise and improve readability",
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        448
+      ],
+      "typeVersion": 1,
+      "id": "a40b4852-9a29-4aa5-bf13-211cba90455f",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "**Send Notifications**\n   - Sends alerts to:\n     - **Telegram** (real-time alerts)\n     - **Slack** (team visibility)\n   - Channels can be enabled independently.",
+        "width": 368
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        736,
+        672
+      ],
+      "typeVersion": 1,
+      "id": "2431c627-2d91-4381-a8c1-a778506e7b83",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Decodo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "CloudFlare Alert Bot",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CloudFlare OK?": {
+      "main": [
+        [
+          {
+            "node": "Is top of hour?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CloudFlare Alert Bot",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build Incident Objects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CloudFlare Alert Bot": {
+      "main": [
+        [
+          {
+            "node": "Alert team via Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send message via Slack1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is top of hour?": {
+      "main": [
+        [
+          {
+            "node": "Send message via Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send message via Slack",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message via Slack": {
+      "main": [
+        []
+      ]
+    },
+    "Build Incident Objects": {
+      "main": [
+        [
+          {
+            "node": "Log Incidents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decodo": {
+      "main": [
+        [
+          {
+            "node": "CloudFlare OK?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "cd318b3d-9c35-4076-b93e-e5feeae53035",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e145bfb15cacc90e0d1ae6ee743e6744f8fc7108de50458700cb2ae620dc5ca5"
+  },
+  "id": "HE3PNecqsN8WiMSP",
+  "tags": [
+    {
+      "updatedAt": "2025-09-05T06:01:07.861Z",
+      "createdAt": "2025-09-05T06:01:07.861Z",
+      "id": "vx2KtjCPUPLpD567",
+      "name": "Decodo"
+    }
+  ]
+}
