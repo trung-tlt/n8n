@@ -1,0 +1,715 @@
+{
+  "id": "LtwRaLpveFuseLRE",
+  "meta": {
+    "instanceId": "e145bfb15cacc90e0d1ae6ee743e6744f8fc7108de50458700cb2ae620dc5ca5",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI-Powered YouTube Video Manager Agent with Audit Logging",
+  "tags": [
+    {
+      "id": "H1W0mKOPZJKW42TP",
+      "name": "youtube",
+      "createdAt": "2025-09-12T15:42:20.645Z",
+      "updatedAt": "2025-09-12T15:42:20.645Z"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "f47f1ba0-459f-4757-bae2-c5b1ba0a3b68",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        -160,
+        736
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "tnXtbK3d66hDjxXa",
+          "name": "OpenAi account"
+        }
+      },
+      "typeVersion": 1.2
+    },
+    {
+      "id": "528426e9-16d2-4173-a1dd-a40ee2588463",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        -32,
+        736
+      ],
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "typeVersion": 1.3
+    },
+    {
+      "id": "c130d66d-937d-4e10-8fe8-f6321e38f695",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -384,
+        512
+      ],
+      "webhookId": "c20461d8-1e1f-4936-a150-13a97ebfd43c",
+      "parameters": {
+        "options": {}
+      },
+      "typeVersion": 1.3
+    },
+    {
+      "id": "c23a4c17-be4a-491c-89ce-d8993c408ba8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1872,
+        160
+      ],
+      "parameters": {
+        "color": 6,
+        "width": 880,
+        "height": 1440,
+        "content": "# AI-Powered YouTube Video Manager Agent with Audit Logging\n> An AI-powered workflow that manages YouTube videos, playlists, and channels through natural chat commands. It can list videos, retrieve details, update metadata, rate, and even delete videos, with every action logged into Google Sheets for accountability.\n\n## Who\u2019s it for\n- **YouTube creators** who want to manage their video library more efficiently.  \n- **Marketing and social media teams** handling multiple videos across playlists and channels.  \n- **Agencies and businesses** looking to streamline video management while keeping a clear audit trail.  \n- **Content managers** needing an AI-powered assistant to update or organize videos quickly.  \n\n## How it works / What it does\n1. **User sends a chat message** with a request (e.g., \u201cList my videos\u201d or \u201cUpdate the description of video X\u201d).  \n2. The **YouTube Video Manager Agent** interprets the request using the OpenAI Chat Model.  \n3. Depending on the intent, the agent selects the right tool:  \n   - **Get many channels** \u2192 Lists available YouTube channels.  \n   - **Get many playlists** \u2192 Retrieves playlists within a channel.  \n   - **Get many videos** \u2192 Lists videos in a playlist or channel.  \n   - **Get a video** \u2192 Fetches detailed information about a single video.  \n   - **Rate a video** \u2192 Applies a like, dislike, or removes a rating.  \n   - **Update a video** \u2192 Updates metadata such as title, description, tags, or privacy settings.  \n   - **Delete a video** \u2192 Permanently deletes a video (only when explicitly requested).  \n4. **Audit Logs** record every action in Google Sheets with details like timestamp, request, tool used, and result summary.  \n5. **Simple Memory** keeps session context, so follow-up commands like \u201cUpdate the same video\u201d or \u201cDelete that one\u201d can be handled smoothly.  \n6. The agent responds naturally with confirmations, lists, or structured details.  \n\n## How to set up\n1. **Connect your YouTube account** to enable access to channels, playlists, and videos.  \n2. **Configure tools**:  \n   - *Get many channels* \u2192 Identify channels linked to the account.  \n   - *Get many playlists* \u2192 Fetch playlists under a channel.  \n   - *Get many videos* \u2192 Retrieve all videos under a playlist or channel.  \n   - *Get a video* \u2192 Retrieve metadata for one video.  \n   - *Rate a video* \u2192 Like, dislike, or remove rating.  \n   - *Update a video* \u2192 Edit metadata like title, description, and privacy.  \n   - *Delete a video* \u2192 Permanently remove a video (use with caution).  \n   - *Audit Logs* \u2192 Connect to Google Sheets and set to `appendOrUpdate`.  \n3. **Enable memory** to allow the agent to track context across multiple queries.  \n4. **Test the workflow** with example requests like:  \n   - \u201cShow me all my videos from channel X.\u201d  \n   - \u201cGet details of video ID Y.\u201d  \n   - \u201cUpdate the title of video Z to \u2018New Tutorial Episode\u2019.\u201d  \n\n## Requirements\n- A valid **YouTube account** with API access.  \n- **Google Sheets account** for storing audit logs.  \n- **OpenAI Chat Model** access to interpret natural language requests.  \n- Orchestration environment (e.g., n8n, LangChain, or agent platform) to run the workflow.  \n\n## How to customize the workflow\n- **Audit Logs**: Add more fields such as operator name, approval notes, or campaign reference.  \n- **Video metadata**: Extend the update action to handle advanced fields like monetization status, captions, or category.  \n- **Notifications**: Integrate with Slack, Discord, or email to notify team members when video updates or deletions occur.  \n- **Governance**: Add confirmation prompts before sensitive actions (updates, deletes).  \n- **Memory settings**: Adjust persistence to remember user preferences across multiple sessions.  "
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "bdb043e5-3d4f-4fe3-aa0e-723e04f2917a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -384,
+        304
+      ],
+      "parameters": {
+        "color": 5,
+        "height": 144,
+        "content": "### 1. Receive User Message  \nThe workflow begins when a user sends a chat message with a request about videos, playlists, or channels.  "
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "40b1fdd8-f963-4393-9417-7a11471a5744",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        176,
+        352
+      ],
+      "parameters": {
+        "color": 5,
+        "width": 288,
+        "height": 128,
+        "content": "### 2. Interpret Request with AI Model  \nThe OpenAI Chat Model analyzes the message, understands intent, and maps the request to the correct YouTube tool.  "
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "e95914bb-7071-42ef-8569-0f5b416393af",
+      "name": "Audit Logs",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        96,
+        736
+      ],
+      "parameters": {
+        "columns": {
+          "value": {},
+          "schema": [],
+          "mappingMode": "autoMapInputData",
+          "matchingColumns": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {},
+        "operation": "append",
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aaDJ9ZAt2LLpZDFcXjVaYW57JwyruCrl5UJWejG1ZTk/edit#gid=0",
+          "cachedResultName": "Sheet1"
+        },
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1aaDJ9ZAt2LLpZDFcXjVaYW57JwyruCrl5UJWejG1ZTk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1aaDJ9ZAt2LLpZDFcXjVaYW57JwyruCrl5UJWejG1ZTk/edit?usp=drivesdk",
+          "cachedResultName": "AWS S3 Audit Logs"
+        }
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7zk8xcj4pNU6f1WM",
+          "name": "Google Sheets account"
+        }
+      },
+      "typeVersion": 4.7
+    },
+    {
+      "id": "f73db576-1264-4a90-8291-60255b33e0cd",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        960
+      ],
+      "parameters": {
+        "color": 5,
+        "width": 256,
+        "height": 144,
+        "content": "### 4. Log Activity in Audit Logs  \nEvery action is recorded into Google Sheets, including timestamp, request, tool used, and the outcome. "
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "2410cf3f-ee78-47dc-bdcb-7b80264be101",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -960,
+        880
+      ],
+      "parameters": {
+        "color": 6,
+        "width": 512,
+        "height": 704,
+        "content": "![](https://s3.ap-southeast-1.amazonaws.com/automatewith.me/screenshots/Screenshot+2025-09-16+at+3.07.43%E2%80%AFPM.png)"
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "c156a9c2-f9e8-4e2d-98f1-db72a8ed14ea",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        512,
+        912
+      ],
+      "parameters": {
+        "color": 5,
+        "width": 336,
+        "height": 384,
+        "content": "### 3. Execute Video Management Action  \nBased on the intent, the agent calls the appropriate tool:  \n- **Get many channels** \u2192 Retrieve available YouTube channels.  \n- **Get many playlists** \u2192 Fetch playlists from a channel.  \n- **Get many videos** \u2192 List all videos in a channel or playlist.  \n- **Get a video** \u2192 Retrieve detailed metadata of a specific video.  \n- **Rate a video** \u2192 Apply like, dislike, or remove rating.  \n- **Update a video** \u2192 Edit video metadata such as title, description, or privacy.  \n- **Delete a video** \u2192 Permanently delete a video (requires explicit confirmation).  "
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "9e00b2c8-e70c-4dfc-8c73-83940212197c",
+      "name": "Get many channels",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        224,
+        736
+      ],
+      "parameters": {
+        "filters": {},
+        "options": {},
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}"
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "5e9902db-648d-4556-abaa-248e663e2731",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -960,
+        160
+      ],
+      "parameters": {
+        "color": 6,
+        "width": 512,
+        "height": 704,
+        "content": "![](https://s3.ap-southeast-1.amazonaws.com/automatewith.me/screenshots/Screenshot+2025-09-16+at+3.07.15%E2%80%AFPM.png)"
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "6ed7cf5f-a478-4395-abbd-35491faf3db6",
+      "name": "Get many playlists",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        352,
+        736
+      ],
+      "parameters": {
+        "part": [
+          "id",
+          "status",
+          "snippet",
+          "player",
+          "contentDetails"
+        ],
+        "filters": {
+          "channelId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Channel_ID', ``, 'string') }}"
+        },
+        "options": {},
+        "resource": "playlist",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}"
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "7ed81826-d5ac-459e-ae9a-a5145fed33f4",
+      "name": "Get many videos",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        480,
+        736
+      ],
+      "parameters": {
+        "filters": {},
+        "options": {},
+        "resource": "video"
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "db0f2df9-c53c-4a4e-b002-75f27a65fd47",
+      "name": "Get a video",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        608,
+        736
+      ],
+      "parameters": {
+        "options": {},
+        "videoId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Video_ID', ``, 'string') }}",
+        "resource": "video",
+        "operation": "get"
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "a4f16000-fcb4-45f2-940c-d61ee2e6d95a",
+      "name": "Rate a video ",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        736,
+        736
+      ],
+      "parameters": {
+        "rating": "like",
+        "videoId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Video_ID', ``, 'string') }}",
+        "resource": "video",
+        "operation": "rate"
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "bb1264b8-6021-43fd-8462-3c5eaada8010",
+      "name": "Youtube Video Manager Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        344,
+        512
+      ],
+      "parameters": {
+        "options": {
+          "systemMessage": "You are the YouTube Video Manager Agent, a chat-based AI assistant that helps users manage their YouTube videos, playlists, and channels through natural language commands.\nTools Available:\n1. Get many channels (getAll: channel)\n- Retrieve and list all available YouTube channels linked to the account.\n2. Get many playlists (getAll: playlist)\n- Retrieve all playlists from a specified channel.\n3. Get many videos (getAll: video)\n- Retrieve a list of videos from a specific channel or playlist.\n4. Get a video (get: video)\n- Retrieve detailed metadata for a single video (title, description, statistics, status).\n5. Rate a video (rate: video)\n- Apply a rating (like, dislike, none) to a specific video.\n6. Update a video (update: video)\n- Update video details such as title, description, tags, privacy status, or category.\n7. Delete a video (delete: video)\n- Permanently delete a video from the channel (only when explicitly requested).\n8. Audit Logs (Google Sheets: appendOrUpdate)\n- Log every action performed into Google Sheets with: Timestamp, User request, Tool used (operation + parameters), Result summary\nResponsibilities:\n- Interpret user requests and map them to the correct tool.\n- Confirm intent for sensitive actions (e.g., deleting or updating videos) before execution.\n- Always log actions in Audit Logs after any tool is used.\n- Return clear, user-friendly responses (tables for lists, structured details for videos, confirmation messages for updates/deletes).\n- Ask clarifying questions if the request lacks details (e.g., \u201cWhich video do you want to update?\u201d).\n\nContext provided by upstream nodes:\n- `requestMetadata` includes the user, session, and dedupe hash.\n- `governance` describes detected intent, risk level, and whether manual review is required.\nBehaviors:\n- Refuse to perform destructive actions if `governance.needsHumanReview` is true unless the user explicitly confirms inside the chat.\n- Summarize the action you performed in one concise sentence so downstream audit logging stays consistent.\n- Surface which YouTube object(s) were touched (channel, playlist, video ID).\n- Do not call the Google Sheets Audit Log tool; logging is handled downstream."
+        }
+      },
+      "typeVersion": 2.2
+    },
+    {
+      "id": "8a36b20e-54d6-4704-83c5-e702e49ca879",
+      "name": "Update a video",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        864,
+        736
+      ],
+      "parameters": {
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+        "videoId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Video_ID', ``, 'string') }}",
+        "resource": "video",
+        "operation": "update",
+        "categoryId": "28",
+        "regionCode": "VN",
+        "updateFields": {}
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "58fc3d32-98c1-4a9d-97b6-806c80bbc32e",
+      "name": "Delete a video",
+      "type": "n8n-nodes-base.youTubeTool",
+      "position": [
+        992,
+        736
+      ],
+      "parameters": {
+        "options": {},
+        "videoId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Video_ID', ``, 'string') }}",
+        "resource": "video",
+        "operation": "delete"
+      },
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "a6yg5KKmowjlpP7b",
+          "name": "YouTube account"
+        }
+      },
+      "typeVersion": 1
+    },
+    {
+      "id": "b02b5684-c565-42a6-b88a-c711fbe3bb37",
+      "name": "UTIL: Normalize Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        512
+      ],
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\nconst payload = $json || {};\nconst rawText = payload.text ?? payload.message ?? payload.prompt ?? '';\nconst cleanMessage = rawText.trim();\nconst userId = payload.user ?? payload.username ?? payload.sender ?? payload.author ?? payload.chatId ?? 'chat-user';\nconst userDisplay = payload.displayName ?? payload.fullName ?? payload.name ?? userId;\nconst receivedAt = new Date().toISOString();\nconst sessionId = payload.sessionId ?? payload.session ?? payload.threadId ?? payload.chatId ?? 'chat-session';\nconst requestHash = crypto.createHash('sha256').update(`${cleanMessage}-${userId}`).digest('hex');\nreturn [\n  {\n    json: {\n      ...payload,\n      text: rawText,\n      cleanMessage,\n      requestMetadata: {\n        userId,\n        userDisplay,\n        sessionId,\n        receivedAt,\n        requestHash,\n      },\n    },\n  },\n];"
+      }
+    },
+    {
+      "id": "c23c23ff-4b9e-49f9-b951-9f3723d2b5d0",
+      "name": "UTIL: Detect Risk Signals",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        512
+      ],
+      "parameters": {
+        "jsCode": "const input = $json || {};\nconst cleanMessage = input.cleanMessage || input.text || '';\nconst normalized = cleanMessage.toLowerCase();\nconst signals = [];\nconst governance = {\n  intentLabel: 'general-info',\n  riskLevel: 'low',\n  needsHumanReview: false,\n  hasWriteIntent: false,\n  hasDeleteIntent: false,\n  requiresVideoReference: false,\n  confidence: 0.5,\n  notes: [],\n};\nconst includesAny = (keywords) => keywords.some((keyword) => normalized.includes(keyword));\nif (includesAny(['list', 'show', 'fetch', 'catalog', 'overview'])) {\n  governance.intentLabel = 'inventory';\n  governance.confidence = 0.62;\n}\nif (includesAny(['update', 'edit', 'change', 'replace', 'retitle', 'rewrite'])) {\n  governance.intentLabel = 'metadata-update';\n  governance.hasWriteIntent = true;\n  governance.riskLevel = governance.riskLevel === 'high' ? 'high' : 'medium';\n  governance.notes.push('Metadata edit requested');\n}\nif (includesAny(['delete', 'remove', 'wipe', 'destroy', 'purge'])) {\n  governance.intentLabel = 'delete-video';\n  governance.hasDeleteIntent = true;\n  governance.hasWriteIntent = true;\n  governance.riskLevel = 'high';\n  governance.needsHumanReview = true;\n  governance.notes.push('Destructive keyword detected');\n  governance.confidence = 0.78;\n}\nif (includesAny(['publish', 'schedule', 'privacy', 'public', 'unlisted'])) {\n  governance.intentLabel = governance.intentLabel === 'general-info' ? 'visibility-change' : governance.intentLabel;\n  governance.hasWriteIntent = true;\n  governance.riskLevel = governance.riskLevel === 'high' ? 'high' : 'medium';\n  governance.notes.push('Visibility or scheduling change requested');\n}\nif (!includesAny(['video id', 'videoId', 'https://youtu', 'watch?v='])) {\n  governance.requiresVideoReference = governance.intentLabel !== 'inventory';\n}\nif (cleanMessage.length < 8) {\n  governance.notes.push('Message too short for confident routing');\n  governance.confidence = Math.min(governance.confidence, 0.45);\n}\nif (!signals.length && governance.notes.length) {\n  signals.push(...governance.notes);\n}\nconst enriched = {\n  ...input,\n  governance,\n  riskSignals: Array.from(new Set([...signals, ...(input.riskSignals || [])])),\n};\nreturn [\n  {\n    json: enriched,\n  },\n];"
+      }
+    },
+    {
+      "id": "53bb0d96-7b19-48db-a281-06f84fdc3e60",
+      "name": "High-Risk Intent?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        64,
+        352
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "913bdb21-6094-4016-b9b4-80e49776a92d",
+              "leftValue": "={{ $json.governance.needsHumanReview }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "dada6951-82d6-499f-a0c6-f95df6b13394",
+      "name": "Notify Governance Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        256,
+        352
+      ],
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "#content-ops"
+        },
+        "text": "={{`\u26a0\ufe0f *High-risk YouTube action* requested by ${$('UTIL: Normalize Request').item.json.requestMetadata.userDisplay || 'unknown user'}\\nIntent: ${$json.governance.intentLabel || 'n/a'} (${$json.governance.riskLevel || 'n/a'})\\nRequest: ${$json.cleanMessage}`}}",
+        "otherOptions": {
+          "unfurl_links": false
+        }
+      },
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "50sk9yul5PctbgzM",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "id": "a23d33dd-d401-48a1-a511-a9e119b3b60d",
+      "name": "UTIL: Build Audit Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        512
+      ],
+      "parameters": {
+        "jsCode": "const agentPayload = $json || {};\nconst requestContext = $('UTIL: Detect Risk Signals').item.json || {};\nconst requestMetadata = requestContext.requestMetadata || {};\nconst governance = requestContext.governance || {};\nconst responseText = agentPayload.output || agentPayload.result || agentPayload.text || '';\nconst summary = responseText.slice(0, 4000);\nconst slackSummary = [\n  `\ud83c\udfac Request: ${requestContext.cleanMessage || requestContext.text || 'n/a'}`,\n  `\u2022 Intent: ${governance.intentLabel || 'general'} (${governance.riskLevel || 'low'})`,\n  governance.needsHumanReview ? '\u2022 Manual review required' : '\u2022 Auto-approved',\n  responseText ? `\u2022 Response: ${responseText}` : '\u2022 Response: waiting on agent output',\n].join('\n');\nreturn [\n  {\n    json: {\n      timestamp: new Date().toISOString(),\n      user: requestMetadata.userDisplay || 'unknown',\n      sessionId: requestMetadata.sessionId || 'n/a',\n      requestHash: requestMetadata.requestHash || '',\n      message: requestContext.cleanMessage || requestContext.text || '',\n      intent: governance.intentLabel || 'general-info',\n      riskLevel: governance.riskLevel || 'low',\n      needsHumanReview: Boolean(governance.needsHumanReview),\n      governanceNotes: (governance.notes || []).join('; '),\n      riskSignals: (requestContext.riskSignals || []).join(', '),\n      responseSummary: summary,\n      slackSummary,\n      trace: JSON.stringify(agentPayload, null, 2).slice(0, 4000),\n    },\n  },\n];"
+      }
+    },
+    {
+      "id": "13192152-4146-442d-9279-c1637e4c9e5b",
+      "name": "Notify Content Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        768,
+        432
+      ],
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "#content-ops"
+        },
+        "text": "={{ $json.slackSummary }}",
+        "otherOptions": {
+          "unfurl_links": false
+        }
+      },
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "50sk9yul5PctbgzM",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ac0e331f-51ea-4ceb-8401-5918e028635c",
+  "connections": {
+    "Get a video": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rate a video ": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a video": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a video": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many videos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many channels": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many playlists": {
+      "ai_tool": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "UTIL: Normalize Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Youtube Video Manager Agent": {
+      "main": [
+        [
+          {
+            "node": "UTIL: Build Audit Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UTIL: Normalize Request": {
+      "main": [
+        [
+          {
+            "node": "UTIL: Detect Risk Signals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UTIL: Detect Risk Signals": {
+      "main": [
+        [
+          {
+            "node": "Youtube Video Manager Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "High-Risk Intent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High-Risk Intent?": {
+      "main": [
+        [
+          {
+            "node": "Notify Governance Slack",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "UTIL: Build Audit Payload": {
+      "main": [
+        [
+          {
+            "node": "Audit Logs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Content Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,605 @@
+{
+  "name": "Decodo SaaS Pricing Intelligence Workflow (B2B Pricing Radar)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b46505f2-ba00-4ceb-8df7-9deb4854ba94",
+      "name": "When clicking \u2018Execute workflow\u2019",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        1152,
+        736
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "id": "84fa3d8c-3586-41de-b21f-c6be94d58376",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        2064,
+        960
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "tnXtbK3d66hDjxXa",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "[\n  {\n    \"plan_name\": \"Scale\",\n    \"monthly_price\": 59,\n    \"annual_price\": 590,\n    \"currency\": \"USD\",\n    \"billing_model\": \"per active seat\",\n    \"target_team_size\": \"Growth teams\",\n    \"headline_features\": [\n      \"Unlimited automations\",\n      \"Usage-based discounts\",\n      \"Dedicated support\"\n    ],\n    \"cta_url\": \"https://example.com/pricing/scale\",\n    \"notes\": \"Best for teams needing compliance and premium onboarding\"\n  }\n]"
+      },
+      "id": "48732581-32df-4722-839d-19bd63c39d34",
+      "name": "Pricing Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        2192,
+        960
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "uploadType",
+              "value": "multipart"
+            },
+            {
+              "name": "supportsAllDrives",
+              "value": "true"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "boundary",
+              "value": "foo_bar_baz"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "multipart/related; boundary=foo_bar_baz",
+        "body": "\n=--foo_bar_baz\nContent-Type: application/json; charset=UTF-8\n\n{\n  \"name\": \"{{ $json.ReportTitle || $json.Today }}\",\n  \"mimeType\": \"application/vnd.google-apps.document\",\n  \"parents\": [\"{{ $json['Drive Folder ID'] }}\"]\n}\n\n--foo_bar_baz\nContent-Type: text/markdown; charset=UTF-8\n\n{{ $('Build \ud83d\udcbc SaaS Pricing Brief').item.json.markdown }}\n\n--foo_bar_baz--\n",
+        "options": {}
+      },
+      "id": "79fffd5f-b6fd-490d-8d7d-9a9ca7eab16d",
+      "name": "Create pricing brief doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2848,
+        736
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7Z6itP0ADAz9395L",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "id": "54015561-60c6-4bad-97b9-a24909d6b017",
+      "name": "Convert brief to PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3072,
+        736
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7Z6itP0ADAz9395L",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0bc3e13b-b377-4a86-8a2d-be3f88f33af8",
+              "name": "Drive Folder ID",
+              "type": "string",
+              "value": "Replace-with-your-shared-drive-folder-id"
+            },
+            {
+              "id": "a4682fbf-698d-43b2-8eb7-dfbc1bb5ded4",
+              "name": "Today",
+              "type": "string",
+              "value": "={{ $now.format(\"yyyyMMddHHmmss\") }}"
+            },
+            {
+              "id": "bd96128f-6e16-488e-8e30-0f64d266e201",
+              "name": "ReportTitle",
+              "type": "string",
+              "value": "={{ $(\"Configure Target Pricing Page\").item.json.ReportTitle || `SaaS Pricing Brief ${$now.format(\"yyyyMMdd\")}` }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "20a0dba3-9c3f-4016-a4a6-ce64807fd7bd",
+      "name": "Configure Google Drive Destination",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2624,
+        736
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Extract B2B SaaS pricing plans, billing models, and positioning cues from the cleaned page content below.\n{{ $json.text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a SaaS pricing analyst. Return only well-structured JSON plans with numeric prices and short feature bullets."
+        }
+      },
+      "id": "911adc36-4b3a-40b7-a192-ff2d329046dc",
+      "name": "Plan Extraction Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        2048,
+        736
+      ],
+      "typeVersion": 2.1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4410a5c2-d8e0-4f07-8bbf-476a541e68fc",
+              "name": "decodoTokenHint",
+              "type": "string",
+              "value": "Get token from your Decodo dashboard (https://dashboard.decodo.com/web-scraping-api/scraper)"
+            },
+            {
+              "id": "2e67b243-654f-4fa7-be77-5e4233e30b9d",
+              "name": "url",
+              "type": "string",
+              "value": "https://stripe.com/pricing"
+            },
+            {
+              "id": "a843c1fa-b6cf-422f-a019-a294a07b02e8",
+              "name": "deviceMode",
+              "type": "string",
+              "value": "desktop"
+            },
+            {
+              "id": "61eae5bb-2941-4706-a424-877994c2a204",
+              "name": "Brand",
+              "type": "string",
+              "value": "Stripe"
+            },
+            {
+              "id": "d233a04f-c288-452d-b70e-4974032cb52a",
+              "name": "ReportTitle",
+              "type": "string",
+              "value": "Stripe Pricing Radar"
+            },
+            {
+              "id": "fc75ea9c-48b8-47b8-931f-3c3daf7d39b4",
+              "name": "Notes",
+              "type": "string",
+              "value": "Track PLG plans + highlight feature shifts"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c6a98520-1943-40b3-99c3-4c8f8b7fefb0",
+      "name": "Configure Target Pricing Page",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1376,
+        736
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code node (JavaScript)\n// Input:  $input.first().json.results[0].content\n// Output: clean plain text (no HTML/JS/CSS, minimal \\n)\n\nfunction stripAll(html) {\n  if (typeof html !== 'string') return '';\n\n  // Remove scripts, styles, head, comments, svg, noscript, canvas\n  html = html.replace(/<script[\\s\\S]*?<\\/script>/gi, '');\n  html = html.replace(/<style[\\s\\S]*?<\\/style>/gi, '');\n  html = html.replace(/<head[\\s\\S]*?<\\/head>/gi, '');\n  html = html.replace(/<noscript[\\s\\S]*?<\\/noscript>/gi, '');\n  html = html.replace(/<svg[\\s\\S]*?<\\/svg>/gi, '');\n  html = html.replace(/<canvas[\\s\\S]*?<\\/canvas>/gi, '');\n  html = html.replace(/<!--[\\s\\S]*?-->/g, '');\n\n  // Replace block-level tags with a single newline\n  const blockTags = [\n    'p','div','section','article','header','footer','nav','aside','main',\n    'h1','h2','h3','h4','h5','h6','ul','ol','li','table','tr','td','th','br','hr'\n  ];\n  for (const tag of blockTags) {\n    const rxOpen  = new RegExp(`<${tag}[^>]*>`, 'gi');\n    const rxClose = new RegExp(`</${tag}>`, 'gi');\n    html = html.replace(rxOpen, '\\n');\n    html = html.replace(rxClose, '\\n');\n  }\n\n  // Strip all remaining tags\n  let text = html.replace(/<\\/?[^>]+>/g, '');\n\n  // Decode common HTML entities\n  text = text\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"')\n    .replace(/&#39;/g, \"'\");\n\n  // Clean whitespace\n  text = text\n    .replace(/\\r/g, '')\n    .replace(/[ \\t]+/g, ' ')       // collapse spaces/tabs\n    .replace(/\\n[ \\t]+/g,'')    // trim spaces after newlines\n    .replace(/\\n{3,}/g, '')    // collapse 3+ newlines into 2\n    .trim();\n  \n  return text;\n}\n\n// MAIN\nconst html = $input.first().json?.results?.[0]?.content || '';\nif (!html) {\n  return [{ json: { error: 'No HTML found at json.results[0].content' } }];\n}\n\nconst text = stripAll(html);\n\nreturn [{\n  json: {\n    text,\n    chars: text.length\n  }\n}];"
+      },
+      "id": "2f6ad9c8-1340-425b-b71b-2fbe1460078c",
+      "name": "HTML Response Parser",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1824,
+        736
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "options": {
+          "channelId": "C09E9SDE99P",
+          "fileName": "=SaaS Pricing Brief {{ $today.format('yyyy-MM-dd') }}",
+          "initialComment": "\ud83d\udcca SaaS Pricing Brief ready \u2014 review tier shifts + highlights."
+        }
+      },
+      "id": "65633939-53f4-4209-a9d5-653ef04b0bdd",
+      "name": "Share brief in Slack",
+      "type": "n8n-nodes-base.slack",
+      "position": [
+        3296,
+        736
+      ],
+      "webhookId": "4f70c69a-8b0e-4446-973c-f14e6479fcae",
+      "typeVersion": 2.3,
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "50sk9yul5PctbgzM",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\n// n8n Code node (JavaScript)\n// Input shape expected:\n// items[0].json.output = [ { plan_name, monthly_price, annual_price, currency, billing_model, target_team_size, headline_features[], cta_url, notes } ]\n\nfunction cleanNumber(value) {\n  if (value === null || value === undefined || value === '') return null;\n  const num = Number(String(value).replace(/[^0-9.]/g, ''));\n  return Number.isFinite(num) ? num : null;\n}\n\nfunction mean(nums) {\n  const valid = nums.filter(n => Number.isFinite(n));\n  return valid.length ? valid.reduce((a,b) => a + b, 0) / valid.length : 0;\n}\n\nfunction currencyFmt(value, currency = 'USD') {\n  if (!Number.isFinite(value)) return 'n/a';\n  try {\n    return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(value);\n  } catch (e) {\n    return `$${value.toFixed(2)}`;\n  }\n}\n\nfunction safe(value, fallback = 'n/a') {\n  if (value === undefined || value === null || value === '') return fallback;\n  if (Array.isArray(value) && !value.length) return fallback;\n  return value;\n}\n\nconst allInputs = $input.all();\nconst plans = (allInputs?.[0]?.json?.output && Array.isArray(allInputs[0].json.output))\n  ? allInputs[0].json.output\n  : (Array.isArray(allInputs?.[0]?.json) ? allInputs[0].json : []);\n\nconst normalized = plans.map(plan => ({\n  plan_name: safe(plan.plan_name, 'Unnamed Plan'),\n  monthly_price: cleanNumber(plan.monthly_price),\n  annual_price: cleanNumber(plan.annual_price),\n  currency: safe(plan.currency, 'USD'),\n  billing_model: safe(plan.billing_model, 'n/a'),\n  target_team_size: safe(plan.target_team_size, 'n/a'),\n  headline_features: Array.isArray(plan.headline_features) ? plan.headline_features.slice(0, 6) : [],\n  cta_url: safe(plan.cta_url, 'n/a'),\n  notes: safe(plan.notes, ''),\n}));\n\nconst currency = normalized.find(p => p.currency)?.currency || 'USD';\nconst monthlyPrices = normalized.map(p => p.monthly_price).filter(Number.isFinite);\nconst annualPrices = normalized.map(p => p.annual_price).filter(Number.isFinite);\nconst planCount = normalized.length;\nconst avgMonthly = mean(monthlyPrices);\nconst minMonthly = monthlyPrices.length ? Math.min(...monthlyPrices) : null;\nconst maxMonthly = monthlyPrices.length ? Math.max(...monthlyPrices) : null;\n\nconst avgAnnual = mean(annualPrices);\nconst minAnnual = annualPrices.length ? Math.min(...annualPrices) : null;\nconst maxAnnual = annualPrices.length ? Math.max(...annualPrices) : null;\n\nconst bestValue = [...normalized]\n  .filter(p => Number.isFinite(p.monthly_price))\n  .sort((a, b) => a.monthly_price - b.monthly_price)\n  .slice(0, 1);\nconst premium = [...normalized]\n  .filter(p => Number.isFinite(p.monthly_price))\n  .sort((a, b) => b.monthly_price - a.monthly_price)\n  .slice(0, 1);\n\nconst now = new Date();\nconst date = now.toLocaleString('en-US', { year: 'numeric', month: 'short', day: '2-digit' });\n\nfunction bulletList(title, items) {\n  const body = items && items.length ? items.map(i => `- ${i}`).join('\n') : '- No data available.';\n  return `## ${title}\n${body}`;\n}\n\nconst tableHeader = '| Plan | Monthly | Annual | Billing Model | Team Fit | Key Features |';\nconst tableDivider = '| --- | --- | --- | --- | --- | --- |';\nconst tableRows = normalized.map(plan => {\n  const features = plan.headline_features.length\n    ? plan.headline_features.join('<br>')\n    : '\u2014';\n  return `| ${plan.plan_name} | ${currencyFmt(plan.monthly_price, plan.currency)} | ${currencyFmt(plan.annual_price, plan.currency)} | ${plan.billing_model} | ${plan.target_team_size} | ${features} |`;\n});\n\nconst highlightLines = [];\nif (bestValue[0]) {\n  highlightLines.push(`**Best self-serve value:** ${bestValue[0].plan_name} at ${currencyFmt(bestValue[0].monthly_price, bestValue[0].currency)} / month.`);\n}\nif (premium[0]) {\n  highlightLines.push(`**Top tier / enterprise:** ${premium[0].plan_name} peaks at ${currencyFmt(premium[0].monthly_price, premium[0].currency)} / month.`);\n}\nif (planCount >= 4) {\n  highlightLines.push('Packaging spans at least 4 tiers, offering clear land-and-expand motion.');\n}\nif (!highlightLines.length) {\n  highlightLines.push('Insufficient pricing variance to highlight standout tiers.');\n}\n\nconst actionItems = [];\nif (maxMonthly && maxMonthly > 0 && minMonthly && minMonthly > 0) {\n  const spread = maxMonthly - minMonthly;\n  if (spread < 20) {\n    actionItems.push('Pricing tiers are tightly grouped \u2014 consider emphasizing feature differentiation.');\n  } else {\n    actionItems.push('Pricing spread supports multi-tier upsell narrative; map messaging to each persona.');\n  }\n}\nif (!annualPrices.length) {\n  actionItems.push('No annual pricing advertised \u2014 confirm if annual discounts exist but hidden behind sales.');\n}\nif (normalized.some(p => p.headline_features === 'n/a' || !p.headline_features.length)) {\n  actionItems.push('Add at least three hero features per tier to clarify value proposition.');\n}\nif (!actionItems.length) {\n  actionItems.push('All key pricing signals captured. Proceed to compare vs. internal packaging.');\n}\n\nconst sourceUrl = $item(0).$node['Configure Target Pricing Page']?.json?.url || 'Target URL not provided';\nconst brand = $item(0).$node['Configure Target Pricing Page']?.json?.Brand || 'Target brand';\n\nconst markdown = `# \ud83d\udcbc SaaS Pricing Brief\n**Brand:** ${brand}\n\n**Source URL:** ${sourceUrl}\n\n**Captured:** ${date}\n\n---\n\n## KPI Snapshot\n| Metric | Value |\n| --- | --- |\n| Plans detected | ${planCount} |\n| Avg monthly | ${currencyFmt(avgMonthly, currency)} |\n| Range monthly | ${currencyFmt(minMonthly, currency)} \u2013 ${currencyFmt(maxMonthly, currency)} |\n| Avg annual | ${currencyFmt(avgAnnual, currency)} |\n| Range annual | ${currencyFmt(minAnnual, currency)} \u2013 ${currencyFmt(maxAnnual, currency)} |\n\n---\n\n## Tier Comparison\n${tableHeader}\n${tableDivider}\n${tableRows.join('\n')}\n\n---\n\n## Highlights\n${highlightLines.map(line => `- ${line}`).join('\n')}\n\n---\n\n## Recommended Next Steps\n${actionItems.map(item => `- ${item}`).join('\n')}`;\n\nconst stats = {\n  planCount,\n  currency,\n  monthly: {\n    avg: Number(avgMonthly.toFixed(2)),\n    min: minMonthly,\n    max: maxMonthly,\n  },\n  annual: {\n    avg: Number(avgAnnual.toFixed(2)),\n    min: minAnnual,\n    max: maxAnnual,\n  },\n};\n\nreturn [\n  {\n    json: {\n      markdown,\n      stats,\n    }\n  }\n];\n"
+      },
+      "id": "3619b79e-47b1-4878-96ea-c35d7a51167d",
+      "name": "Build \ud83d\udcbc SaaS Pricing Brief",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        2400,
+        736
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "\n# Decodo SaaS Pricing Intelligence Workflow (B2B Pricing Radar)\n### Demo: Using Decodo's built-in n8n node to pull competitor pricing intelligence\n> Crawl any SaaS pricing page, extract plan structures with an LLM, and ship a polished pricing brief to Google Drive + Slack.\n## Use cases\n- **Product Marketing** validating competitor packaging updates.\n- **RevOps** checking for price drift before discount approvals.\n- **Leadership** tracking how PLG funnels evolve week to week.\n\n## Flow\n1. Manual trigger.\n2. Configure target pricing URL + metadata.\n3. Decodo node fetches fully rendered HTML (headless JS, device emulation).\n4. Code node normalizes HTML to clean text.\n5. LLM + structured parser converts text to plan objects.\n6. Code node builds KPI-rich pricing brief (markdown).\n7. Google Docs + Drive nodes publish a doc + PDF copy.\n8. Slack upload shares the PDF to a #pricing-intel channel.\n\n## Requirements\n- Decodo API key.\n- OpenAI API key (GPT-4.1-mini or similar).\n- Google Drive/Docs + Slack credentials.\n- Target URL must be public (no auth walls).\n",
+        "height": 2672,
+        "width": 1040
+      },
+      "id": "48fe9e27-67d0-4d86-95be-c4efddbb5a07",
+      "name": "Sticky Note Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 1. Trigger Workflow\nManual trigger keeps the scrape intentional \u2014 ideal when pricing updates are expected (launch days, quarter close, etc.).",
+        "width": 272,
+        "color": 5
+      },
+      "id": "2d72b07e-8000-4690-99dc-88aa113f1f1c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1120,
+        544
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 2. Configure Inputs\nProvide the competitor URL, device preference, and report title. This metadata flows into the report & downstream destinations.",
+        "width": 272,
+        "color": 5
+      },
+      "id": "6ed3a761-226d-4255-8862-8ed5a94af538",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1280,
+        928
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 3. Decodo Pricing Scraper\nRuns the official Decodo node to render the entire pricing page (JS + device emulation) so tier cards and popovers are captured.",
+        "width": 272,
+        "color": 5
+      },
+      "id": "69b52aea-2e5f-4cd9-aafb-0f2f2000f8b5",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1504,
+        544
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 4. Normalize HTML\nCustom code removes scripts/styles and leaves only readable text for the LLM to digest reliably.",
+        "width": 272,
+        "color": 5
+      },
+      "id": "c3c1856c-e9e7-4372-9a34-a93b4a2009f6",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1728,
+        944
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 5. Plan Extraction Agent\nLLM + structured parser translates messy pricing copy into a predictable JSON schema (plan, price, features, CTA).",
+        "width": 288,
+        "color": 5
+      },
+      "id": "5a99ff12-c13d-4cb5-9852-1edb9009a634",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2048,
+        528
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 6. Build SaaS Pricing Brief\nTransforms plan JSON into an exec-ready markdown brief with KPIs, tier comparison table, and suggested next steps.",
+        "width": 288,
+        "color": 5
+      },
+      "id": "b0ada9bd-85f2-48a7-b7f3-ad4c4591ac0b",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2448,
+        912
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 7-9. Publish Assets\nSet Drive folder \u2192 create Google Doc \u2192 convert to PDF. Keeps a doc + PDF version for stakeholders.",
+        "height": 128,
+        "width": 352,
+        "color": 5
+      },
+      "id": "6fa824c0-ff52-43b1-8684-8db9e13ac3ee",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2768,
+        560
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### 10. Share in Slack\nUploads the PDF straight into the #pricing-intel (or similar) Slack channel for instant distribution.",
+        "height": 144,
+        "width": 288,
+        "color": 5
+      },
+      "id": "a6b954e4-7c92-49cf-8637-543adb2fdc22",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3248,
+        912
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Sample brief\nAdd internal link to the generated Google Doc/PDF after first successful run.",
+        "height": 144,
+        "width": 320
+      },
+      "id": "b3defbf8-85b4-4484-bec7-74e060f9b4d3",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3600,
+        704
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "geo": "="
+      },
+      "type": "@decodo/n8n-nodes-decodo.decodo",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        736
+      ],
+      "id": "6baab7ab-2283-4285-a689-014440243f1a",
+      "name": "Decodo Pricing Scraper",
+      "credentials": {
+        "decodoApi": {
+          "id": "qDAMRMg8LKeuZwkd",
+          "name": "Decodo Credentials account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Plan Extraction Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML Response Parser": {
+      "main": [
+        [
+          {
+            "node": "Plan Extraction Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \u2018Execute workflow\u2019": {
+      "main": [
+        [
+          {
+            "node": "Configure Target Pricing Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Target Pricing Page": {
+      "main": [
+        [
+          {
+            "node": "Decodo Pricing Scraper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decodo Pricing Scraper": {
+      "main": [
+        [
+          {
+            "node": "HTML Response Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan Extraction Agent": {
+      "main": [
+        [
+          {
+            "node": "Build \ud83d\udcbc SaaS Pricing Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pricing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Plan Extraction Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build \ud83d\udcbc SaaS Pricing Brief": {
+      "main": [
+        [
+          {
+            "node": "Configure Google Drive Destination",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Google Drive Destination": {
+      "main": [
+        [
+          {
+            "node": "Create pricing brief doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create pricing brief doc": {
+      "main": [
+        [
+          {
+            "node": "Convert brief to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert brief to PDF": {
+      "main": [
+        [
+          {
+            "node": "Share brief in Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6126c19a-1707-4a2e-9c64-3355f0e33da7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e145bfb15cacc90e0d1ae6ee743e6744f8fc7108de50458700cb2ae620dc5ca5"
+  },
+  "id": "dcd-saas-pricing-radar",
+  "tags": [
+    {
+      "updatedAt": "2025-09-05T06:01:07.861Z",
+      "createdAt": "2025-09-05T06:01:07.861Z",
+      "id": "vx2KtjCPUPLpD567",
+      "name": "Decodo"
+    }
+  ]
+}
