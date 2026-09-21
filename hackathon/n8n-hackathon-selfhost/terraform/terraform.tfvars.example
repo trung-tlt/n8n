@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and edit.
+
+acme_email = "trungtlt@outlook.com"
+
+# Optional: uncomment to enable SSH. Otherwise use SSM (scripts/ssm.sh).
+# ssh_public_key = "ssh-ed25519 AAAA... trung@macbook"
+# admin_cidrs    = ["1.2.3.4/32"]
+
+# Override the animal roster if you like (lowercase letters/digits only).
+# teams = ["lion", "tiger", "teddy", "hippo", "panda", "koala", "otter", "fox", "eagle", "dolphin"]
+
+# instance_type = "m7i.xlarge"
+# n8n_image     = "docker.n8n.io/n8nio/n8n:2.38.7"

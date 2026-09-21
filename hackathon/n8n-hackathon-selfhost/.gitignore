@@ -1,0 +1,6 @@
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/terraform.tfvars
+credentials.csv
+credentials.md
