@@ -1,0 +1,110 @@
+[
+  {
+    "request_id": "WR-001",
+    "submitted_at": "2026-09-19T08:52:00+07:00",
+    "serial_no": "SN26037",
+    "customer_phone": "0982653845",
+    "issue": "Laptop không lên nguồn, đèn sạc không sáng.",
+    "district": "Quận 3",
+    "_scenario": "normal – in warranty → T01"
+  },
+  {
+    "request_id": "WR-002",
+    "submitted_at": "2026-09-19T08:59:00+07:00",
+    "serial_no": "SN26074",
+    "customer_phone": "0994326270",
+    "issue": "Máy in bị kẹt giấy liên tục.",
+    "district": "Quận 7",
+    "_scenario": "warranty expired (12 months)"
+  },
+  {
+    "request_id": "WR-003",
+    "submitted_at": "2026-09-19T09:06:00+07:00",
+    "serial_no": "SN26111",
+    "customer_phone": "0984210839",
+    "issue": "Máy lạnh chảy nước, không mát.",
+    "district": "Củ Chi",
+    "_scenario": "area Củ Chi has no technician"
+  },
+  {
+    "request_id": "WR-004",
+    "submitted_at": "2026-09-19T09:13:00+07:00",
+    "serial_no": "SN26148",
+    "customer_phone": "0928112658",
+    "issue": "Điện thoại sạc không vào.",
+    "district": "Gò Vấp",
+    "_scenario": "expires in 1 day – still valid"
+  },
+  {
+    "request_id": "WR-005",
+    "submitted_at": "2026-09-19T09:20:00+07:00",
+    "serial_no": "SN26185",
+    "customer_phone": "0945263097",
+    "issue": "TV bị sọc màn hình sau khi con làm rơi.",
+    "district": "Bình Thạnh",
+    "_scenario": "physical damage → excluded"
+  },
+  {
+    "request_id": "WR-006",
+    "submitted_at": "2026-09-19T09:27:00+07:00",
+    "serial_no": "SN99999",
+    "customer_phone": "0935769908",
+    "issue": "Màn hình bị chết điểm ảnh.",
+    "district": "Quận 1",
+    "_scenario": "serial not found"
+  },
+  {
+    "request_id": "WR-007",
+    "submitted_at": "2026-09-19T09:34:00+07:00",
+    "serial_no": "SN26259",
+    "customer_phone": "0971164941",
+    "issue": "Máy kêu lạch cạch, thỉnh thoảng tự tắt.",
+    "district": "Tân Bình",
+    "_scenario": "normal – classify fault"
+  },
+  {
+    "request_id": "WR-008",
+    "submitted_at": "2026-09-19T09:41:00+07:00",
+    "serial_no": "SN26296",
+    "customer_phone": "0979511174",
+    "issue": "Không vào được mạng.",
+    "district": "Quận 10",
+    "_scenario": "normal"
+  },
+  {
+    "request_id": "WR-009",
+    "submitted_at": "2026-09-19T09:48:00+07:00",
+    "serial_no": "SN26333",
+    "customer_phone": "0955765237",
+    "issue": "Hư rồi, sửa giúp.",
+    "district": "Phú Nhuận",
+    "_scenario": "too vague"
+  },
+  {
+    "request_id": "WR-010",
+    "submitted_at": "2026-09-19T09:55:00+07:00",
+    "serial_no": "SN26370",
+    "customer_phone": "0927926451",
+    "issue": "Bàn phím bị liệt vài phím, có vào nước nhẹ.",
+    "district": "Tân Bình",
+    "_scenario": "possible liquid damage → excluded / verify"
+  },
+  {
+    "request_id": "WR-011",
+    "submitted_at": "2026-09-19T10:02:00+07:00",
+    "serial_no": "SN26407",
+    "customer_phone": "0935281449",
+    "issue": "Loa rè, âm thanh nhỏ.",
+    "district": "Gò Vấp",
+    "_scenario": "normal"
+  },
+  {
+    "request_id": "WR-012",
+    "submitted_at": "2026-09-19T10:09:00+07:00",
+    "serial_no": "SN26444",
+    "customer_phone": "0965178836",
+    "issue": "Mình muốn hỏi tiến độ phiếu bảo hành hôm trước.",
+    "district": "Phú Nhuận",
+    "_scenario": "status inquiry, not a new ticket"
+  }
+]

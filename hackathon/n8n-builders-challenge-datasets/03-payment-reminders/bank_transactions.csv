@@ -1,0 +1,21 @@
+txn_id,txn_date,amount_vnd,description,sender_name
+TXN0001,9/17/2026,27250000,TT INV-2026-801,Đại lý Phương Nam (demo)
+TXN0002,9/17/2026,60500000,Thanh toan INV-2026-806,Cửa hàng Điện máy Sao Việt (demo)
+TXN0003,9/17/2026,27500000,INV-2026-817 chuyen khoan,Công ty TNHH Việt Tín (demo)
+TXN0004,9/18/2026,18500000,TT hoa don INV-2026-804,Siêu thị mini Hòa Bình (demo)
+TXN0005,9/18/2026,13500000,TT dot 1 INV-2026-803,Nhà thuốc Thiện Tâm (demo)
+TXN0006,9/18/2026,60000000,thanh toan tien hang thang 8,Công ty TNHH Việt Tín (demo)
+TXN0007,9/19/2026,60250000,TT INV-2026-870,Quán cà phê Gió Chiều (demo)
+TXN0008,9/19/2026,22750000,INV-2026-818,Cửa hàng Điện máy Sao Việt (demo)
+TXN0009,9/19/2026,3300000,CK tien coc,NGUYEN VAN X
+TXN0010,9/16/2026,12000000,Hoan tien NCC,CONG TY ABC DEMO
+TXN0011,9/19/2026,35000000,INV-2026-823 + INV-2026-812,Tiệm bánh Mộc (demo)
+TXN0012,9/12/2026,7000000,Thu tien ban le,KHACH LE
+TXN0013,9/13/2026,7000000,Thu tien ban le,KHACH LE
+TXN0014,9/8/2026,1000000,Thu tien ban le,KHACH LE
+TXN0015,9/9/2026,7000000,Thu tien ban le,KHACH LE
+TXN0016,9/9/2026,2000000,Thu tien ban le,KHACH LE
+TXN0017,9/14/2026,2000000,Thu tien ban le,KHACH LE
+TXN0018,9/12/2026,5000000,Thu tien ban le,KHACH LE
+TXN0019,9/10/2026,2000000,Thu tien ban le,KHACH LE
+TXN0020,9/8/2026,7000000,Thu tien ban le,KHACH LE

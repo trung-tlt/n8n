@@ -1,0 +1,7 @@
+ticket_id,serial_no,tech_id,status,created_at,due_date,last_update_to_customer
+WT-900,SN26444,T01,in_progress,2026-09-16,2026-09-19,2026-09-16
+WT-901,SN26518,T01,in_progress,2026-09-17,2026-09-20,2026-09-18
+WT-902,SN26555,T02,in_progress,2026-09-14,2026-09-17,2026-09-15
+WT-903,SN26592,T02,waiting_parts,2026-09-13,2026-09-16,2026-09-13
+WT-904,SN26629,T04,done,2026-09-15,2026-09-18,2026-09-19
+WT-905,SN26666,T03,in_progress,2026-09-18,2026-09-21,2026-09-18

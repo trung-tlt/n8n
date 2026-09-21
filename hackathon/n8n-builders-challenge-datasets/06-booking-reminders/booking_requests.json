@@ -1,0 +1,131 @@
+[
+  {
+    "request_id": "REQ-001",
+    "received_at": "2026-09-19T09:52:00+07:00",
+    "customer_name": "Võ Bảo Thảo",
+    "phone": "0993949482",
+    "email": "thao.vo13@example.com",
+    "action": "book",
+    "service_id": "SV01",
+    "preferred_start": "2026-09-26T11:00",
+    "_scenario": "free slot → confirm"
+  },
+  {
+    "request_id": "REQ-002",
+    "received_at": "2026-09-19T09:54:00+07:00",
+    "customer_name": "Võ Thị Yến",
+    "phone": "0962105218",
+    "email": "yen.vo41@example.com",
+    "action": "book",
+    "service_id": "SV03",
+    "preferred_start": "2026-09-26T10:30",
+    "_scenario": "clash with BK002 (ST01) → suggest another time"
+  },
+  {
+    "request_id": "REQ-003",
+    "received_at": "2026-09-19T09:56:00+07:00",
+    "customer_name": "Võ Thu Trí",
+    "phone": "0914524410",
+    "email": "tri.vo53@example.com",
+    "action": "book",
+    "service_id": "SV03",
+    "preferred_start": "2026-09-26T12:00",
+    "_scenario": "RACE A: same slot as REQ-004 (only ST01 can do color)"
+  },
+  {
+    "request_id": "REQ-004",
+    "received_at": "2026-09-19T09:56:20+07:00",
+    "customer_name": "Võ Hoài Yến",
+    "phone": "0900130411",
+    "email": "yen.vo88@example.com",
+    "action": "book",
+    "service_id": "SV03",
+    "preferred_start": "2026-09-26T12:00",
+    "_scenario": "RACE B: 20 seconds later, confirm only one"
+  },
+  {
+    "request_id": "REQ-005",
+    "received_at": "2026-09-19T10:00:00+07:00",
+    "customer_name": "Đỗ Quốc Thảo",
+    "phone": "0979906593",
+    "email": "thao.do77@example.com",
+    "action": "book",
+    "service_id": "SV05",
+    "preferred_start": "2026-09-27T10:00",
+    "_scenario": "ST03 does not work Sunday → no spa staff"
+  },
+  {
+    "request_id": "REQ-006",
+    "received_at": "2026-09-19T10:02:00+07:00",
+    "customer_name": "Dương Hoài Quyên",
+    "phone": "0915846450",
+    "email": "quyen.duong95@example.com",
+    "action": "book",
+    "service_id": "SV02",
+    "preferred_start": "2026-09-26T20:30",
+    "_scenario": "ends after closing time"
+  },
+  {
+    "request_id": "REQ-007",
+    "received_at": "2026-09-19T10:04:00+07:00",
+    "customer_name": "Ngô Văn Hùng",
+    "phone": "0954146590",
+    "email": "hung.ngo70@example.com",
+    "action": "reschedule",
+    "booking_id": "BK004",
+    "preferred_start": "2026-09-26T16:00",
+    "_scenario": "reschedule – ST02 free at 16:00?"
+  },
+  {
+    "request_id": "REQ-008",
+    "received_at": "2026-09-19T10:06:00+07:00",
+    "customer_name": "Bùi Ngọc Nhi",
+    "phone": "0901291102",
+    "email": "nhi.bui67@example.com",
+    "action": "cancel",
+    "booking_id": "BK014",
+    "_scenario": "cancel → offer slot to waitlist"
+  },
+  {
+    "request_id": "REQ-009",
+    "received_at": "2026-09-19T10:08:00+07:00",
+    "customer_name": "Đỗ Thu Quân",
+    "phone": "0940692566",
+    "email": "quan.do49@example.com",
+    "action": "book",
+    "service_id": "SV09",
+    "preferred_start": "2026-09-26T09:00",
+    "_scenario": "unknown service"
+  },
+  {
+    "request_id": "REQ-010",
+    "received_at": "2026-09-19T10:10:00+07:00",
+    "customer_name": "Vũ Hoài Quyên",
+    "phone": "0932280886",
+    "email": "quyen.vu33@example.com",
+    "action": "book",
+    "service_id": "SV01",
+    "preferred_start": "2026-09-18T10:00",
+    "_scenario": "date in the past"
+  },
+  {
+    "request_id": "REQ-011",
+    "received_at": "2026-09-19T10:12:00+07:00",
+    "customer_name": "Hoàng Ngọc An",
+    "phone": "0904876452",
+    "email": "an.hoang81@example.com",
+    "action": "book",
+    "text": "Cho chị đặt gội đầu dưỡng sinh sáng chủ nhật tuần sau nhé, tầm 9-10h",
+    "_scenario": "free text (AI optional)"
+  },
+  {
+    "request_id": "REQ-012",
+    "received_at": "2026-09-19T10:14:00+07:00",
+    "customer_name": "Lê Minh Nhi",
+    "phone": "0908458500",
+    "email": "nhi.le81@example.com",
+    "action": "cancel",
+    "booking_id": "BK099",
+    "_scenario": "booking not found"
+  }
+]

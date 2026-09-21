@@ -1,0 +1,9 @@
+product_id,product_name,category,price_vnd,promo_type,promo_value,promo_start,promo_end,key_features,target_audience,image_url
+P01,Trà sữa oolong nướng,drink,45000,percent,20,2026-09-19,2026-09-21,Oolong rang thơm; sữa tươi; trân châu đường đen,"Sinh viên, dân văn phòng",
+P02,Cà phê muối,drink,39000,,,,,Kem muối béo mặn; cà phê phin đậm,Người thích cà phê đậm,
+P03,Bánh bông lan trứng muối,cake,65000,bogo,,2026-09-20,2026-09-20,"Trứng muối, chà bông, sốt phô mai","Gia đình, nhóm bạn",
+P04,Trà đào cam sả,drink,42000,fixed,10000,2026-09-01,2026-09-15,Đào ngâm; cam tươi; sả,Giới trẻ,
+P05,Combo văn phòng 5 ly,combo,199000,free_shipping,,2026-09-15,2026-09-30,"5 ly tùy chọn size M; giao trong 30 phút nội thành Q1, Q3",Nhóm văn phòng,
+P06,Matcha latte,drink,49000,percent,15,2026-09-22,2026-09-28,Matcha Nhật; sữa yến mạch (+10.000đ),"Người ăn chay, healthy",
+P07,Bánh croissant bơ,cake,35000,,,,,Bơ Pháp; nướng mỗi sáng,Khách ăn sáng,
+P08,Thẻ thành viên Gió Chiều,membership,0,gift,,2026-09-19,2026-10-19,Tích 10 ly tặng 1; sinh nhật giảm 30%,Khách quen,

@@ -1,0 +1,4 @@
+channel,max_chars,emoji,hashtags,cta,format
+facebook,600,yes,3-5,Nhắn tin để đặt hàng,Hook + 3 lợi ích + ưu đãi + CTA
+zalo,300,light,0,"Bấm ""Đặt ngay""","Ngắn gọn, thân mật, 1 ưu đãi chính"
+email,1200,no,0,Đặt hàng tại website,Subject (≤ 60 ký tự) + preheader + body + CTA

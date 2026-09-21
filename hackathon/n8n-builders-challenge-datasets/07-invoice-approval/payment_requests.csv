@@ -1,0 +1,10 @@
+request_id,submitted_at,employee_id,category,description,claimed_amount_vnd,invoice_file
+PR-001,2026-09-19T08:39:00+07:00,E04,office_supplies,Mua văn phòng phẩm tháng 9,1279800,INV-A1021_VanPhongPham.pdf
+PR-002,2026-09-19T08:48:00+07:00,E01,marketing,Quảng cáo Facebook tháng 9,7150000,INV-0087_QuangCao.pdf
+PR-003,2026-09-19T08:57:00+07:00,E03,equipment,Laptop cho 2 nhân viên mới,37730000,INV-5532_Laptop.pdf
+PR-004,2026-09-19T09:06:00+07:00,E02,entertainment,Tiếp khách hàng Phú Gia,1782000,INV-7781_TiepKhach.pdf
+PR-005,2026-09-19T09:15:00+07:00,E01,marketing,Thanh toán quảng cáo,7150000,INV-0087_QuangCao_copy.pdf
+PR-006,2026-09-19T09:24:00+07:00,E04,equipment,Thiết bị phòng họp,59400000,INV-3390_ThietBi.pdf
+PR-007,2026-09-19T09:33:00+07:00,E02,travel,Taxi gặp khách,450000,IMG_taxi_receipt.jpg
+PR-008,2026-09-19T09:42:00+07:00,E04,office_supplies,Mực in,1922400,IMG_blurry_receipt.jpg
+PR-009,2026-09-19T09:51:00+07:00,E03,software,Gia hạn phần mềm (sẽ bổ sung hóa đơn sau),3600000,

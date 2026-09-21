@@ -1,0 +1,5 @@
+waitlist_id,customer_name,phone,email,service_id,preferred,joined_at,status
+WL01,Huỳnh Hoài Hiếu,0968616425,hieu.huynh23@example.com,SV01,2026-09-26 afternoon,2026-09-18T20:17,waiting
+WL02,Võ Gia My,0964725877,my.vo16@example.com,SV01,2026-09-26 17:00,2026-09-18T20:34,waiting
+WL03,Võ Thị Tú,0933017568,tu.vo86@example.com,SV02,2026-09-26 any,2026-09-18T20:51,waiting
+WL04,Huỳnh Văn Lan,0925898319,lan.huynh92@example.com,SV06,2026-09-27 morning,2026-09-18T21:08,waiting

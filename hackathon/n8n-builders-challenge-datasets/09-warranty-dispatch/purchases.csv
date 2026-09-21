@@ -1,0 +1,26 @@
+serial_no,model_code,product,category,customer_name,phone,email,purchase_date,warranty_months,store_branch,district
+SN26037,LP-ASUS14,"Laptop 14""",laptop,Lý Văn Hạnh,0982653845,hanh.ly26@example.com,2026-05-20,24,CN Quận 7,Quận 3
+SN26074,PR-LASER,Máy in laser,printer,Dương Bảo Trang,0994326270,trang.duong46@example.com,2025-08-15,12,CN Thủ Đức,Quận 7
+SN26111,AC-12K,Máy lạnh 12.000BTU,air_conditioner,Huỳnh Thị Hùng,0984210839,hung.huynh40@example.com,2026-07-21,24,CN Thủ Đức,Củ Chi
+SN26148,PH-A15,Điện thoại,phone,Hồ Bảo Yến,0928112658,yen.ho34@example.com,2025-09-20,12,CN Quận 7,Gò Vấp
+SN26185,TV-55,"Smart TV 55""",tv,Huỳnh Thanh Hùng,0945263097,hung.huynh55@example.com,2026-03-03,24,CN Quận 7,Bình Thạnh
+SN26222,MN-27,"Màn hình 27""",monitor,Nguyễn Minh Khoa,0922018051,khoa.nguyen48@example.com,2025-02-24,36,CN Quận 7,Quận 10
+SN26259,MN-27,"Màn hình 27""",monitor,Vũ Minh Dũng,0971164941,dung.vu45@example.com,2025-09-30,36,CN Quận 7,Tân Bình
+SN26296,LP-DELL15,"Laptop 15""",laptop,Vũ Quốc Quyên,0979511174,quyen.vu34@example.com,2024-05-18,12,CN Thủ Đức,Quận 10
+SN26333,MN-27,"Màn hình 27""",monitor,Bùi Hoài Nam,0955765237,nam.bui29@example.com,2025-02-01,36,CN Thủ Đức,Phú Nhuận
+SN26370,TV-55,"Smart TV 55""",tv,Ngô Thu Linh,0927926451,linh.ngo41@example.com,2026-01-25,24,CN Quận 7,Tân Bình
+SN26407,RT-WIFI6,Router Wi-Fi 6,network,Hoàng Bảo Quân,0935281449,quan.hoang59@example.com,2025-11-29,24,CN Thủ Đức,Gò Vấp
+SN26444,AC-12K,Máy lạnh 12.000BTU,air_conditioner,Nguyễn Bảo Sơn,0965178836,son.nguyen46@example.com,2025-09-27,24,CN Thủ Đức,Phú Nhuận
+SN26481,LP-ASUS14,"Laptop 14""",laptop,Hồ Khánh Hà,0948425996,ha.ho61@example.com,2026-08-20,24,CN Quận 7,Phú Nhuận
+SN26518,LP-ASUS14,"Laptop 14""",laptop,Trần Ngọc Quân,0945037849,quan.tran81@example.com,2026-04-29,24,CN Quận 7,Quận 3
+SN26555,PR-LASER,Máy in laser,printer,Nguyễn Thị Giang,0937392419,giang.nguyen54@example.com,2025-09-27,12,CN Thủ Đức,Thủ Đức
+SN26592,MN-27,"Màn hình 27""",monitor,Phạm Văn Hiếu,0902883755,hieu.pham45@example.com,2025-06-27,36,CN Quận 7,Tân Bình
+SN26629,RT-WIFI6,Router Wi-Fi 6,network,Lý Quốc Trí,0907207547,tri.ly26@example.com,2025-12-17,24,CN Quận 7,Bình Thạnh
+SN26666,AC-12K,Máy lạnh 12.000BTU,air_conditioner,Đặng Ngọc Phong,0961884791,phong.dang66@example.com,2026-07-06,24,CN Thủ Đức,Phú Nhuận
+SN26703,PH-A15,Điện thoại,phone,Bùi Đức Khoa,0921824886,khoa.bui81@example.com,2025-08-27,12,CN Quận 1,Quận 10
+SN26740,LP-ASUS14,"Laptop 14""",laptop,Dương Ngọc Hải,0988283472,hai.duong72@example.com,2025-06-17,24,CN Thủ Đức,Phú Nhuận
+SN26777,TV-55,"Smart TV 55""",tv,Hồ Bảo Phúc,0983298222,phuc.ho85@example.com,2024-08-17,24,CN Thủ Đức,Quận 1
+SN26814,LP-ASUS14,"Laptop 14""",laptop,Võ Thanh Yến,0922485272,yen.vo24@example.com,2024-05-13,24,CN Thủ Đức,Quận 1
+SN26851,MN-27,"Màn hình 27""",monitor,Hoàng Hoài Quân,0978043858,quan.hoang12@example.com,2024-12-01,36,CN Quận 7,Gò Vấp
+SN26888,MN-27,"Màn hình 27""",monitor,Bùi Minh Sơn,0907001594,son.bui43@example.com,2025-03-28,36,CN Quận 1,Quận 7
+SN26925,PR-LASER,Máy in laser,printer,Lê Hoài Quyên,0932337352,quyen.le69@example.com,2025-06-13,12,CN Quận 7,Gò Vấp

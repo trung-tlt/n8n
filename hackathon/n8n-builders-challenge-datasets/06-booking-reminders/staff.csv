@@ -1,0 +1,5 @@
+staff_id,staff_name,skills,working_days,start_time,end_time
+ST01,Minh Tú,hair;color,Tue;Wed;Thu;Fri;Sat;Sun,09:00,19:00
+ST02,Thu Hà,hair,Mon;Tue;Wed;Sat;Sun,09:00,18:00
+ST03,Ngọc Anh,spa;nail,Mon;Wed;Thu;Fri;Sat,10:00,20:00
+ST04,Bảo Trâm,nail,Thu;Fri;Sat;Sun,09:00,17:00

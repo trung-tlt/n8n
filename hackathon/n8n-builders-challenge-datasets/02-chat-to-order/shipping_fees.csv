@@ -1,0 +1,4 @@
+zone,districts,fee_vnd,free_from_vnd
+inner_hcm,Quận 1;Quận 3;Quận 4;Quận 5;Quận 10;Phú Nhuận;Bình Thạnh,20000,500000
+outer_hcm,Quận 7;Quận 8;Quận 12;Gò Vấp;Tân Bình;Tân Phú;Thủ Đức;Bình Tân,30000,700000
+other_province,*,45000,1000000

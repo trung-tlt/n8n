@@ -1,0 +1,98 @@
+[
+  {
+    "message_id": "MSG-001",
+    "channel": "zalo",
+    "customer_name": "Lý Ngọc Dũng",
+    "received_at": "2026-09-19T09:53:00+07:00",
+    "text": "Cho em 2 áo thun trắng size M, giao 12 Lê Lợi, Quận 1 nha shop. SĐT 0901234567",
+    "_scenario": "normal"
+  },
+  {
+    "message_id": "MSG-002",
+    "channel": "facebook",
+    "customer_name": "Bùi Thị Sơn",
+    "received_at": "2026-09-19T09:56:00+07:00",
+    "text": "Shop ơi lấy 1 quần jean slim size 30 với 1 thắt lưng size 105, gửi về 45 Phan Xích Long, Phú Nhuận, sđt 0938 111 222",
+    "_scenario": "normal – two items"
+  },
+  {
+    "message_id": "MSG-003",
+    "channel": "zalo",
+    "customer_name": "Vũ Gia Vy",
+    "received_at": "2026-09-19T09:59:00+07:00",
+    "text": "Em lấy 1 áo thun đen size L nhé",
+    "_scenario": "out of stock (TS-BLK) + missing phone & address"
+  },
+  {
+    "message_id": "MSG-004",
+    "channel": "facebook",
+    "customer_name": "Lê Minh Trang",
+    "received_at": "2026-09-19T10:02:00+07:00",
+    "text": "cho mình 1 đầm hoa nhí size S, 88 Nguyễn Văn Linh Q7, 0977000111",
+    "_scenario": "out of stock (DR-FLR) → suggest DR-WRP"
+  },
+  {
+    "message_id": "MSG-005",
+    "channel": "zalo",
+    "customer_name": "Võ Gia Trí",
+    "received_at": "2026-09-19T10:05:00+07:00",
+    "text": "ship cho e 3 cái ao thun trang size xl + 1 non, dc ko shop? 0912 345 678, 20 Quang Trung Gò Vấp",
+    "_scenario": "no diacritics / teencode"
+  },
+  {
+    "message_id": "MSG-006",
+    "channel": "facebook",
+    "customer_name": "Bùi Thị Tú",
+    "received_at": "2026-09-19T10:08:00+07:00",
+    "text": "Mình muốn mua áo polo xanh",
+    "_scenario": "missing size, quantity, phone, address"
+  },
+  {
+    "message_id": "MSG-007",
+    "channel": "zalo",
+    "customer_name": "Hoàng Bảo Khoa",
+    "received_at": "2026-09-19T10:11:00+07:00",
+    "text": "Lấy 5 polo xanh rêu size L, giao 15 Võ Văn Tần Q3, 0903 555 666",
+    "_scenario": "quantity (5) > stock (3)"
+  },
+  {
+    "message_id": "MSG-008",
+    "channel": "facebook",
+    "customer_name": "Phan Gia Lan",
+    "received_at": "2026-09-19T10:14:00+07:00",
+    "text": "Shop có bán ốp lưng điện thoại không, lấy 2 cái",
+    "_scenario": "unknown product"
+  },
+  {
+    "message_id": "MSG-009",
+    "channel": "zalo",
+    "customer_name": "Lý Thu Hà",
+    "received_at": "2026-09-19T10:17:00+07:00",
+    "text": "Hủy đơn hôm qua giúp em với, em đặt nhầm size",
+    "_scenario": "not a new order (cancel request)"
+  },
+  {
+    "message_id": "MSG-010",
+    "channel": "facebook",
+    "customer_name": "Vũ Khánh Sơn",
+    "received_at": "2026-09-19T10:20:00+07:00",
+    "text": "Cho mình 1 sneaker trắng size 41 và 1 hộp quà, giao Đà Nẵng: 102 Bạch Đằng, Hải Châu. 0935 222 333",
+    "_scenario": "other province shipping"
+  },
+  {
+    "message_id": "MSG-011",
+    "channel": "zalo",
+    "customer_name": "Vũ Khánh Hạnh",
+    "received_at": "2026-09-19T10:23:00+07:00",
+    "text": "Em lấy 2 hoodie xám size M, 1 size L. Địa chỉ 7 Trường Chinh Tân Bình, sđt 0987654321. Gói quà giúp em",
+    "_scenario": "two sizes of same product + gift box"
+  },
+  {
+    "message_id": "MSG-012",
+    "channel": "facebook",
+    "customer_name": "Nguyễn Thị Dũng",
+    "received_at": "2026-09-19T10:26:00+07:00",
+    "text": "Lấy 1 quần jean size 33",
+    "_scenario": "size not available"
+  }
+]

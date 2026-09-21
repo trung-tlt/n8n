@@ -1,0 +1,182 @@
+[
+  {
+    "feedback_id": "FB-001",
+    "received_at": "2026-09-19T08:11:00+07:00",
+    "channel": "website",
+    "order_id": "OD26093",
+    "customer_name": "Vũ Thanh Tâm",
+    "message": "Đơn của tôi đặt 6 ngày rồi mà vẫn chưa nhận được, shop kiểm tra giúp!",
+    "_scenario": "delivery – late"
+  },
+  {
+    "feedback_id": "FB-002",
+    "received_at": "2026-09-19T08:22:00+07:00",
+    "channel": "facebook",
+    "order_id": "OD26095",
+    "customer_name": "Hồ Thị Bình",
+    "message": "Nồi mới nhận hôm qua bị móp một góc, muốn đổi cái mới.",
+    "_scenario": "return – damaged on arrival (within 7 days)"
+  },
+  {
+    "feedback_id": "FB-003",
+    "received_at": "2026-09-19T08:33:00+07:00",
+    "channel": "website",
+    "order_id": "OD26098",
+    "customer_name": "Lê Thu Linh",
+    "message": "Tôi muốn trả hàng và hoàn tiền vì không thích nữa. Nhận hàng gần 1 tháng rồi. Không hoàn tiền tôi sẽ đánh giá 1 sao!!!",
+    "_scenario": "return – outside 7-day window, angry"
+  },
+  {
+    "feedback_id": "FB-004",
+    "received_at": "2026-09-19T08:44:00+07:00",
+    "channel": "shopee_demo",
+    "order_id": "OD26091",
+    "customer_name": "Trần Hoài Vy",
+    "message": "Máy dùng được 2 tuần thì không lên nguồn nữa.",
+    "_scenario": "warranty"
+  },
+  {
+    "feedback_id": "FB-005",
+    "received_at": "2026-09-19T08:55:00+07:00",
+    "channel": "facebook",
+    "order_id": "OD26094",
+    "customer_name": "Huỳnh Văn Quyên",
+    "message": "Cho hỏi sản phẩm này có mấy màu?",
+    "_scenario": "not a complaint – product question"
+  },
+  {
+    "feedback_id": "FB-006",
+    "received_at": "2026-09-19T09:06:00+07:00",
+    "channel": "website",
+    "order_id": "OD26096",
+    "customer_name": "Bùi Quốc Thảo",
+    "message": "Giao thiếu 1 phụ kiện đi kèm (nắp bình).",
+    "_scenario": "delivery – missing item"
+  },
+  {
+    "feedback_id": "FB-007",
+    "received_at": "2026-09-19T09:17:00+07:00",
+    "channel": "website",
+    "order_id": "OD26099",
+    "customer_name": "Lê Quốc Hạnh",
+    "message": "Máy kêu to bất thường, có mùi khét, tôi sợ cháy nổ!!",
+    "_scenario": "warranty – SAFETY, urgent"
+  },
+  {
+    "feedback_id": "FB-008",
+    "received_at": "2026-09-19T09:28:00+07:00",
+    "channel": "facebook",
+    "order_id": "OD26092",
+    "customer_name": "Vũ Thanh Hải",
+    "message": "Shipper thái độ không tốt.",
+    "_scenario": "delivery – service complaint"
+  },
+  {
+    "feedback_id": "FB-009",
+    "received_at": "2026-09-19T09:39:00+07:00",
+    "channel": "website",
+    "order_id": "",
+    "customer_name": "Ngô Thị Mai",
+    "message": "Tôi mua ở cửa hàng khác nhưng muốn nhờ bảo hành được không?",
+    "_scenario": "no order id"
+  },
+  {
+    "feedback_id": "FB-010",
+    "received_at": "2026-09-19T09:50:00+07:00",
+    "channel": "shopee_demo",
+    "order_id": "OD26100",
+    "customer_name": "Lý Thị Châu",
+    "message": "Sản phẩm dùng tốt, cảm ơn shop!",
+    "_scenario": "positive feedback"
+  },
+  {
+    "feedback_id": "FB-011",
+    "received_at": "2026-09-19T10:01:00+07:00",
+    "channel": "website",
+    "order_id": "OD26097",
+    "customer_name": "Huỳnh Thanh Bình",
+    "message": "Muốn đổi sang màu khác, hàng còn nguyên tem.",
+    "_scenario": "return – exchange within window?"
+  },
+  {
+    "feedback_id": "FB-012",
+    "received_at": "2026-09-19T10:12:00+07:00",
+    "channel": "facebook",
+    "order_id": "OD26102",
+    "customer_name": "Hoàng Khánh Lan",
+    "message": "Bị trừ tiền 2 lần cho cùng một đơn.",
+    "_scenario": "billing – escalate to finance"
+  },
+  {
+    "feedback_id": "FB-013",
+    "received_at": "2026-09-19T10:23:00+07:00",
+    "channel": "website",
+    "order_id": "OD26104",
+    "customer_name": "Ngô Bảo Hà",
+    "message": "Ấm bị rò nước ở đáy sau 3 tháng sử dụng.",
+    "_scenario": "warranty – check purchase date"
+  },
+  {
+    "feedback_id": "FB-014",
+    "received_at": "2026-09-19T10:34:00+07:00",
+    "channel": "website",
+    "order_id": "OD26105",
+    "customer_name": "Trần Thanh Hạnh",
+    "message": "Làm rơi vỡ bình, có bảo hành không?",
+    "_scenario": "warranty – user damage (excluded)"
+  },
+  {
+    "feedback_id": "FB-015",
+    "received_at": "2026-09-19T10:45:00+07:00",
+    "channel": "facebook",
+    "order_id": "OD26999",
+    "customer_name": "Dương Thanh Tú",
+    "message": "Đơn OD26999 của tôi đâu rồi?",
+    "_scenario": "order id not found"
+  },
+  {
+    "feedback_id": "FB-016",
+    "received_at": "2026-09-19T10:56:00+07:00",
+    "channel": "website",
+    "order_id": "OD26101",
+    "customer_name": "Huỳnh Ngọc Long",
+    "message": "Can I return this? The size is too big for my room.",
+    "_scenario": "English"
+  },
+  {
+    "feedback_id": "FB-017",
+    "received_at": "2026-09-19T11:07:00+07:00",
+    "channel": "shopee_demo",
+    "order_id": "OD26103",
+    "customer_name": "Dương Bảo Thảo",
+    "message": "hàng lỗi",
+    "_scenario": "too vague – ask for details"
+  },
+  {
+    "feedback_id": "FB-018",
+    "received_at": "2026-09-19T11:18:00+07:00",
+    "channel": "website",
+    "order_id": "OD26106",
+    "customer_name": "Hồ Hoài Hạnh",
+    "message": "Đèn chập chờn sau 5 ngày.",
+    "_scenario": "warranty"
+  },
+  {
+    "feedback_id": "FB-019",
+    "received_at": "2026-09-19T11:29:00+07:00",
+    "channel": "facebook",
+    "order_id": "OD26107",
+    "customer_name": "Trần Thanh Linh",
+    "message": "Tôi đã gửi yêu cầu 3 ngày trước mà chưa ai trả lời!",
+    "_scenario": "follow-up – overdue ticket"
+  },
+  {
+    "feedback_id": "FB-020",
+    "received_at": "2026-09-19T11:40:00+07:00",
+    "channel": "website",
+    "order_id": "OD26108",
+    "customer_name": "Trần Đức Sơn",
+    "message": "Giao nhầm sản phẩm, tôi đặt máy xay nhưng nhận ấm siêu tốc.",
+    "_scenario": "delivery – wrong item"
+  }
+]

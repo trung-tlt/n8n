@@ -1,0 +1,26 @@
+sku,item_name,unit,current_stock,min_stock,avg_daily_sales,lead_time_days,supplier_id,unit_cost_vnd,last_counted_at
+CF-ARA,Hạt cà phê Arabica,kg,3.2,5,1.6,3,SUP01,420000,2026-09-19
+CF-ROB,Hạt cà phê Robusta,kg,12,6,2.1,3,SUP01,260000,2026-09-19
+CF-BLD,Cà phê pha phin blend,kg,7,4,0.9,3,SUP01,300000,2026-09-19
+MK-FRS,Sữa tươi không đường,lít,18,20,9.5,1,SUP02,32000,2026-09-19
+MK-CON,Sữa đặc,lon,40,24,6,1,SUP02,24000,2026-09-19
+MK-OAT,Sữa yến mạch,lít,6,6,1.2,1,SUP02,65000,2026-09-19
+WH-CRM,Kem whipping,hộp,2,4,0.8,1,SUP02,110000,2026-09-19
+CP-12O,Ly nhựa 12oz,cái,850,500,140,5,SUP03,900,2026-09-19
+CP-16O,Ly nhựa 16oz,cái,300,500,120,5,SUP03,1100,2026-09-19
+LD-DOM,Nắp cầu,cái,1200,400,90,5,SUP03,400,2026-09-19
+ST-PPR,Ống hút giấy,cái,90,300,110,5,SUP03,350,2026-09-19
+BG-TKW,Túi mang về,cái,400,200,45,5,SUP03,600,2026-09-19
+TE-PCH,Trà đào túi lọc,hộp,5,4,0.7,2,SUP04,150000,2026-09-19
+TE-OLG,Trà ô long,kg,1.5,1,0.3,2,SUP04,380000,2026-09-19
+SY-CRM,Syrup caramel,chai,3,3,0.5,2,SUP04,185000,2026-09-19
+SY-VNL,Syrup vani,chai,0,3,0.4,2,SUP04,185000,2026-09-19
+PC-PCH,Đào ngâm,lon,9,6,1.1,2,SUP04,55000,2026-09-19
+MT-PWD,Bột matcha,kg,0.8,1,0.12,7,SUP04,950000,2026-09-19
+SG-WHT,Đường cát trắng,kg,25,10,1.8,2,SUP04,22000,2026-09-19
+CK-CRS,Bánh croissant,cái,14,20,16,1,SUP05,18000,2026-09-19
+CK-TIR,Bánh tiramisu,phần,6,8,5,1,SUP05,35000,2026-09-19
+CK-BNM,Bánh mì que,cái,30,15,12,1,SUP05,8000,2026-09-19
+CF-DEC,Cà phê decaf (mới),kg,2,1,,3,SUP01,520000,2026-09-19
+IC-CUB,Đá viên,bao,12,8,7,,,15000,2026-09-19
+NP-TIS,Khăn giấy,gói,-4,20,6,3,SUP03,12000,2026-09-19

@@ -1,0 +1,6 @@
+tech_id,tech_name,skills,areas,active_jobs,max_jobs,telegram_chat_id
+T01,Võ Minh Hùng,laptop;phone,Quận 1;Quận 3;Quận 10;Phú Nhuận,3,5,REPLACE_WITH_YOUR_CHAT_ID
+T02,Lý Quốc Sơn,printer;network;monitor,Quận 1;Quận 3;Bình Thạnh;Gò Vấp,5,5,REPLACE_WITH_YOUR_CHAT_ID
+T03,Đặng Thanh Tâm,tv;air_conditioner,Quận 7;Quận 10;Tân Bình;Bình Thạnh,1,4,REPLACE_WITH_YOUR_CHAT_ID
+T04,Hồ Gia Bảo,laptop;monitor;printer,Quận 7;Thủ Đức;Tân Bình,2,5,REPLACE_WITH_YOUR_CHAT_ID
+T05,Bùi Ngọc Yến,phone;network,Gò Vấp;Thủ Đức;Phú Nhuận,0,4,REPLACE_WITH_YOUR_CHAT_ID

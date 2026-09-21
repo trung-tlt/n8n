@@ -1,0 +1,4 @@
+post_id,product_id,channel,status,scheduled_at,approved_by
+POST-01,P02,facebook,published,2026-09-15T08:00,Chủ quán
+POST-02,P07,zalo,approved,2026-09-20T07:00,Chủ quán
+POST-03,P04,facebook,draft,,

@@ -1,0 +1,6 @@
+rule_id,min_vnd,max_vnd,approver,note
+R1,0,2000000,auto,Tự động duyệt nếu đủ chứng từ / auto-approve with a complete invoice
+R2,2000001,10000000,department_manager,Trưởng phòng duyệt (manager_email)
+R3,10000001,50000000,finance_manager,finance.manager@binhminh-demo.example.com
+R4,50000001,,director,director@binhminh-demo.example.com
+R5,,,finance_manager,"Category ""entertainment"" luôn cần finance duyệt / always needs finance"

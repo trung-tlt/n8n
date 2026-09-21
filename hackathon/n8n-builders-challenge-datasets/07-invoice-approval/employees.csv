@@ -1,0 +1,5 @@
+employee_id,full_name,department,email,manager_email
+E01,Nguyễn Hoài Nam,Marketing,nam.e01@binhminh-demo.example.com,truongphong.mkt@binhminh-demo.example.com
+E02,Trần Thu Trang,Sales,trang.e02@binhminh-demo.example.com,truongphong.sales@binhminh-demo.example.com
+E03,Lê Đức Phong,IT,phong.e03@binhminh-demo.example.com,truongphong.it@binhminh-demo.example.com
+E04,Phạm Khánh Linh,Admin,linh.e04@binhminh-demo.example.com,truongphong.admin@binhminh-demo.example.com

@@ -1,0 +1,21 @@
+order_id,customer_name,phone,email,product,qty,total_vnd,order_date,delivered_date,delivery_status,channel
+OD26091,Trần Hoài Vy,0979325184,vy.tran8@example.com,Nồi chiên không dầu 5L,1,1490000,2026-08-13,2026-08-17,delivered,website
+OD26092,Vũ Thanh Hải,0951616311,hai.vu2@example.com,Đèn bàn LED,1,390000,2026-08-11,2026-08-15,delivered,website
+OD26093,Vũ Thanh Tâm,0943721391,tam.vu89@example.com,Quạt đứng thông minh,1,1190000,2026-09-13,,in_transit,shopee_demo
+OD26094,Huỳnh Văn Quyên,0955659541,quyen.huynh64@example.com,Quạt đứng thông minh,1,1190000,2026-09-16,2026-09-18,delivered,website
+OD26095,Hồ Thị Bình,0910375428,binh.ho2@example.com,Máy lọc không khí mini,1,2290000,2026-09-15,2026-09-18,delivered,website
+OD26096,Bùi Quốc Thảo,0988545446,thao.bui11@example.com,Quạt đứng thông minh,1,1190000,2026-08-17,2026-08-21,delivered,website
+OD26097,Huỳnh Thanh Bình,0913114868,binh.huynh6@example.com,Máy xay sinh tố,1,890000,2026-09-12,2026-09-14,delivered,shopee_demo
+OD26098,Lê Thu Linh,0928419695,linh.le30@example.com,Quạt đứng thông minh,1,1190000,2026-08-20,2026-08-23,delivered,website
+OD26099,Lê Quốc Hạnh,0926060975,hanh.le73@example.com,Bộ chăn ga cotton,1,990000,2026-09-12,2026-09-15,delivered,website
+OD26100,Lý Thị Châu,0903195644,chau.ly96@example.com,Máy xay sinh tố,1,890000,2026-08-29,2026-08-31,delivered,website
+OD26101,Huỳnh Ngọc Long,0935587291,long.huynh91@example.com,Nồi chiên không dầu 5L,1,1490000,2026-08-21,2026-08-25,delivered,website
+OD26102,Hoàng Khánh Lan,0926273750,lan.hoang91@example.com,Nồi chiên không dầu 5L,1,1490000,2026-09-02,2026-09-06,delivered,facebook
+OD26103,Dương Bảo Thảo,0957544755,thao.duong45@example.com,Máy lọc không khí mini,1,2290000,2026-09-02,2026-09-05,delivered,facebook
+OD26104,Ngô Bảo Hà,0935917055,ha.ngo1@example.com,Máy lọc không khí mini,1,2290000,2026-09-04,2026-09-06,delivered,website
+OD26105,Trần Thanh Hạnh,0936887785,hanh.tran17@example.com,Đèn bàn LED,1,390000,2026-09-15,2026-09-17,delivered,shopee_demo
+OD26106,Hồ Hoài Hạnh,0972504911,hanh.ho85@example.com,Quạt đứng thông minh,1,1190000,2026-08-15,2026-08-18,delivered,facebook
+OD26107,Trần Thanh Linh,0918513452,linh.tran11@example.com,Quạt đứng thông minh,1,1190000,2026-08-17,2026-08-20,delivered,facebook
+OD26108,Trần Đức Sơn,0914650036,son.tran9@example.com,Máy lọc không khí mini,1,2290000,2026-08-22,2026-08-25,delivered,website
+OD26109,Trần Gia Nam,0995810641,nam.tran14@example.com,Bình giữ nhiệt 750ml,1,290000,2026-09-16,2026-09-19,delivered,website
+OD26110,Phạm Gia Bình,0941960601,binh.pham98@example.com,Ấm siêu tốc,1,450000,2026-09-15,2026-09-17,delivered,shopee_demo

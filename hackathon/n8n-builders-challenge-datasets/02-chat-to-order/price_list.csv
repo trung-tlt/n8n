@@ -1,0 +1,26 @@
+sku,product_name,aliases,size_options,price_vnd,stock_qty,substitute_sku
+TS-WHT,Áo thun trắng basic,áo thun trắng;ao thun trang;áo phông trắng;white tee,S;M;L;XL,159000,42,
+TS-BLK,Áo thun đen basic,áo thun đen;ao thun den;áo phông đen;black tee,S;M;L;XL,159000,0,TS-NVY
+TS-NVY,Áo thun xanh navy basic,áo thun navy;áo xanh đậm;ao thun xanh,S;M;L;XL,159000,18,
+PL-WHT,Áo polo trắng,polo trắng;ao polo trang,M;L;XL,259000,12,
+PL-GRN,Áo polo xanh rêu,polo xanh rêu;polo xanh,M;L;XL,259000,3,
+SH-OXF,Sơ mi oxford trắng,sơ mi trắng;so mi;áo sơ mi,S;M;L;XL,349000,9,
+SH-LIN,Sơ mi linen be,sơ mi linen;áo linen,M;L,399000,0,SH-OXF
+JN-SLM,Quần jean slim xanh,quần jean;quan jean;jeans,28;29;30;31;32,459000,25,
+JN-WID,Quần jean ống rộng,jean ống rộng;quần ống rộng,26;27;28;29,489000,7,
+KK-BEI,Quần kaki be,quần kaki;kaki be,29;30;31;32,389000,14,
+SK-DEN,Chân váy jean,chân váy;váy jean,S;M;L,299000,6,
+DR-FLR,Đầm hoa nhí,đầm hoa;váy hoa;dam hoa,S;M;L,529000,0,DR-WRP
+DR-WRP,Đầm wrap đen,đầm đen;váy đen;đầm wrap,S;M;L,559000,5,
+HD-GRY,Áo hoodie xám,hoodie xám;áo khoác nỉ,M;L;XL,429000,11,
+JK-BMB,Áo khoác bomber,bomber;áo khoác dù,M;L;XL,599000,4,
+CP-LOG,Nón lưỡi trai logo,nón;mũ lưỡi trai;non,Free,129000,30,
+SK-SOX,Vớ cổ thấp (3 đôi),vớ;tất;combo vớ,Free,79000,60,
+BG-TOT,Túi tote canvas,túi tote;tui vai,Free,149000,22,
+BT-LEA,Thắt lưng da,thắt lưng;dây nịt;that lung,95;105;115,249000,8,
+SN-WHT,Giày sneaker trắng,giày trắng;sneaker,38;39;40;41;42;43,690000,10,
+SN-BLK,Giày sneaker đen,giày đen;sneaker đen,38;39;40;41;42,690000,0,SN-WHT
+SD-SLP,Dép quai ngang,dép;dep,38;39;40;41;42,119000,35,
+SC-SLK,Khăn lụa,khăn;khăn quàng,Free,189000,9,
+GC-500,Thẻ quà tặng 500K,gift card;phiếu quà tặng,Free,500000,999,
+BX-GFT,Hộp quà,hộp quà;gói quà,Free,25000,100,

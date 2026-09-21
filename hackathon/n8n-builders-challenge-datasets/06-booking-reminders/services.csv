@@ -1,0 +1,7 @@
+service_id,service_name,duration_min,price_vnd,required_skill
+SV01,Cắt tóc nam,30,120000,hair
+SV02,Cắt + gội + sấy nữ,60,250000,hair
+SV03,Nhuộm tóc,120,650000,color
+SV04,Gội dưỡng sinh,45,180000,spa
+SV05,Chăm sóc da mặt,60,400000,spa
+SV06,Làm móng tay,45,150000,nail

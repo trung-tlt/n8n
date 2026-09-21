@@ -1,0 +1,26 @@
+lead_id,submitted_at,full_name,phone,email,company,message,budget_vnd,source,city,status,assigned_to,first_contact_at
+L001,2026-09-17T09:42:00+07:00,Hoàng Thanh Trang,0905408872,trang.hoang61@example.com,,"Em cần thiết kế nội thất căn hộ 3 phòng ngủ ở Vinhomes, muốn nhận báo giá trong tuần này.",250000000,website_form,TP.HCM,contacted,S01,2026-09-17T10:07:00+07:00
+L002,2026-09-17T11:19:00+07:00,Bùi Quốc Trang,0971365334,trang.bui90@example.com,Công ty TNHH Mây Xanh (demo),"Công ty mình 40 nhân sự, cần cải tạo văn phòng 200m2 trước Tết.",800000000,facebook_ads,TP.HCM,contacted,S02,2026-09-17T11:44:00+07:00
+L003,2026-09-17T12:56:00+07:00,Đặng Ngọc Hà,0972520047,ha.dang31@example.com,,Mình muốn đăng ký khóa học n8n cơ bản cho 5 nhân viên.,25000000,zalo_oa,TP.HCM,new,,
+L004,2026-09-17T14:33:00+07:00,Huỳnh Gia Trí,0937213991,tri.huynh72@example.com,,Cần tư vấn chạy quảng cáo Facebook cho chuỗi 3 quán cà phê.,60000000,website_form,TP.HCM,contacted,S04,2026-09-17T14:58:00+07:00
+L005,2026-09-17T16:10:00+07:00,Lý Thu Hiếu,0971058815,hieu.ly3@example.com,,"Tìm hiểu giá tủ bếp gỗ sồi, chưa gấp.",40000000,google_search,TP.HCM,new,,
+L006,2026-09-17T17:47:00+07:00,David Miller,0964004589,david.miller@example.com,,"Hi, I need a quote for furnishing a 2-bedroom rental apartment in District 2. Moving in next month.",180000000,website_form,TP.HCM,new,,
+L007,2026-09-17T19:24:00+07:00,Nguyễn Thu Mai,0987078099,mai.nguyen71@example.com,,Cho hỏi có lớp AI automation cuối tuần không ạ?,6000000,facebook_ads,TP.HCM,new,,
+L008,2026-09-17T21:01:00+07:00,Ngô Thị Linh,0918201855,linh.ngo93@example.com,,"Chung cư 70m2 mới nhận nhà, cần làm trọn gói nội thất, gọi lại giúp em trước 5h chiều nay nhé!!!",300000000,zalo_oa,TP.HCM,new,,
+L009,2026-09-17T22:38:00+07:00,Phan Hoài An,0993117795,an.phan6@example.com,Cửa hàng Gốm Sứ Hòa An (demo),"Bên em cần thiết kế lại showroom 120m2, có thể gửi portfolio không?",500000000,referral,TP.HCM,new,,
+L010,2026-09-18T00:15:00+07:00,Hồ Thu Long,0979295997,long.ho57@example.com,,Xin báo giá làm video TikTok cho sản phẩm mỹ phẩm.,30000000,website_form,TP.HCM,new,,
+L011,2026-09-18T01:52:00+07:00,Lê Thị Linh,0927742861,linh.le8@example.com,,"Mình chỉ hỏi thăm thôi, chưa có nhu cầu.",,facebook_ads,TP.HCM,new,,
+L012,2026-09-18T03:29:00+07:00,Đỗ Hoài Hà,0935596359,ha.do29@example.com,Công ty CP Kế Toán Việt (demo),Đào tạo in-house về Excel và tự động hóa cho phòng kế toán 12 người.,45000000,referral,TP.HCM,new,,
+L013,2026-09-18T05:06:00+07:00,Ngô Bảo Phong,,phong.ngo68@example.com,,Cần thiết kế phòng ngủ cho bé.,35000000,website_form,TP.HCM,new,,
+L014,2026-09-18T06:43:00+07:00,Hoàng Hoài Giang,0948275800,giang.hoang2@example.com,Công ty TNHH Sao Mới (demo),"Công ty em mở văn phòng mới ở Thủ Đức, 350m2, cần tư vấn gấp trong tuần.",1200000000,google_search,TP.HCM,new,,
+L015,2026-09-18T08:20:00+07:00,Lê Ngọc Tú,0987311298,tu.le88@example.com,,Có dịch vụ quản lý fanpage trọn gói không?,15000000,zalo_oa,TP.HCM,new,,
+L016,2026-09-18T09:57:00+07:00,Lý Minh Linh,0966689371,linh.ly91@example.com,,"KIẾM TIỀN ONLINE 10 TRIỆU/NGÀY, INBOX NGAY!!!",,website_form,TP.HCM,new,,
+L017,2026-09-18T11:34:00+07:00,Huỳnh Thị Yến,0908580799,yen.huynh30@example.com,,"Em muốn làm lại phòng khách + bếp, nhà phố 4x16.",150000000,facebook_ads,TP.HCM,new,,
+L018,2026-09-18T13:11:00+07:00,Chị Hương,0905408872,tu.phan98@example.com,,Anh ơi em hỏi lại báo giá thiết kế căn hộ 3PN hôm trước ạ.,250000000,zalo_oa,TP.HCM,new,,
+L019,2026-09-18T14:48:00+07:00,Võ Đức Nam,0926245328,nam.vo33@example.com,Công ty BĐS Phú Gia (demo),Cần khóa học ChatGPT cho đội sales 20 người.,40000000,website_form,TP.HCM,new,,
+L020,2026-09-18T16:25:00+07:00,Hồ Thanh Dũng,0936179794,dung.ho29@example.com,,Muốn đặt bàn làm việc gỗ theo kích thước riêng.,12000000,google_search,TP.HCM,new,,
+L021,2026-09-18T18:02:00+07:00,Lý Quốc An,0978140582,an.ly60@example.com,,Tư vấn nội thất villa 3 tầng ở Thảo Điền.,2000000000,referral,TP.HCM,new,,
+L022,2026-09-18T19:39:00+07:00,Anh Tuấn (HR),0941647368,ha.dang31@example.com,,Cần gửi lại thông tin khóa học n8n cho team 5 người như đã hỏi.,25000000,facebook_ads,TP.HCM,new,,
+L023,2026-09-18T21:16:00+07:00,Nguyễn Văn Hải,0990184692,hai.nguyen49@example.com,,Thiết kế logo và bộ nhận diện cho tiệm bánh.,20000000,website_form,TP.HCM,new,,
+L024,2026-09-18T22:53:00+07:00,Bùi Bảo Quân,0992418004,quan.bui52@example.com,,Văn phòng 60m2 cần bàn ghế và vách ngăn.,90000000,zalo_oa,TP.HCM,new,,
+L025,2026-09-19T00:30:00+07:00,,0934773045,test@test,,,,website_form,TP.HCM,new,,

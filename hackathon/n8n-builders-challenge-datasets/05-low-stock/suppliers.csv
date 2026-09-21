@@ -1,0 +1,6 @@
+supplier_id,supplier_name,contact_email,min_order_vnd,order_days
+SUP01,Cà Phê Cao Nguyên Demo,order@caphe-demo.example.com,2000000,Mon;Thu
+SUP02,Sữa Tươi Đồng Xanh Demo,sales@sua-demo.example.com,1000000,Daily
+SUP03,Bao Bì Xanh Demo,hello@baobi-demo.example.com,1500000,Tue
+SUP04,Trà & Syrup Sài Gòn Demo,po@tra-demo.example.com,1000000,Mon;Wed;Fri
+SUP05,Bánh Ngọt Ban Mai Demo,banmai@banh-demo.example.com,500000,Daily

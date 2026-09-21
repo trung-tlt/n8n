@@ -1,0 +1,6 @@
+sales_id,full_name,email,telegram_chat_id,specialty,languages,active_leads,max_active_leads
+S01,Trần Minh Khoa,khoa.sales@binhminh-demo.example.com,REPLACE_WITH_YOUR_CHAT_ID,interior_apartment,vi;en,6,10
+S02,Lê Ngọc Lan,lan.sales@binhminh-demo.example.com,REPLACE_WITH_YOUR_CHAT_ID,interior_office,vi,9,10
+S03,Phạm Gia Huy,huy.sales@binhminh-demo.example.com,REPLACE_WITH_YOUR_CHAT_ID,training,vi;en,3,8
+S04,Võ Thanh Vy,vy.sales@binhminh-demo.example.com,REPLACE_WITH_YOUR_CHAT_ID,marketing_services,vi,10,10
+S05,Đỗ Quốc Bảo,bao.sales@binhminh-demo.example.com,REPLACE_WITH_YOUR_CHAT_ID,interior_apartment,vi,2,10
