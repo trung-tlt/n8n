@@ -32,9 +32,25 @@ n8n-workflows/
 ├── data/
 ├── utilities/
 ├── _published/
+├── guides/          # 📚 Free ebooks & beginner guides (PDF)
+├── hackathon/       # n8n Builders Challenge datasets & self-host setup
 ├── docs/
 └── README.md
 ```
+
+---
+
+## 📚 Free Guides & Ebooks
+
+New to n8n? Start here — no signup required.
+
+**[n8n 101 — Workflow Automation for Complete Beginners](./guides/n8n-101)** (PDF, 20 pages)
+Learn what n8n is, its core concepts, key features, the 400+ integration ecosystem, AI agents
+& RAG, and real-world use cases — all in one concise guide.
+Available in [English](./guides/n8n-101/n8n-101-beginners-guide-en.pdf) and
+[Tiếng Việt](./guides/n8n-101/n8n-101-beginners-guide-vi.pdf).
+
+See all guides in [`guides/`](./guides).
 
 ---
 
